@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="2" failures="0" name="com.aexample.test.TestSuite" time="0" errors="2" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="D:\jdk-8u101-windows-i586\jre\bin"/>
+    <property name="java.vm.version" value="25.101-b13"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="F:\rbais\temp\AndrewsSpringExample"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 3"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="F:\rbais\temp\AndrewsSpringExample"/>
+    <property name="java.runtime.version" value="1.8.0_101-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="D:\jdk-8u101-windows-i586\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="java.io.tmpdir" value="C:\DOCUME~1\ROBERT~2.OLD\LOCALS~1\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows XP"/>
+    <property name="classworlds.conf" value="F:\rbais\workspaceSTS\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7541362135995653740.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="D:\jdk-8u101-windows-i586\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\apache-maven-3.3.3\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32\WBEM;D:\android\adt-bundle-windows-x86-20140321\sdk\tools;D:\SqliteBrowser3\bin;D:\sedna\bin;D:\ant_1.9.4\bin;D:\Bitvise SSH Client;D:\TortoiseSVN\bin;D:\java_ee_sdk_6u3_jdk7\jdk7\bin;D:\android\sdk\platform-tools;F:\CNC_Machine\potrace-1.13.win32;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="5.1"/>
+    <property name="user.home" value="C:\Documents and Settings\Robert B. Andrews.OLD-3589A8B9E73"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="Main Login"/>
+    <property name="java.class.path" value="/D:/Eclipse-STS/sts-bundle/sts-3.8.1.RELEASE/plugins/org.eclipse.m2e.maven.runtime_1.7.0.20160603-1931/jars/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="D:\jdk-8u101-windows-i586\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_101"/>
+    <property name="java.ext.dirs" value="D:\jdk-8u101-windows-i586\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="D:\jdk-8u101-windows-i586\jre\lib\resources.jar;D:\jdk-8u101-windows-i586\jre\lib\rt.jar;D:\jdk-8u101-windows-i586\jre\lib\sunrsasign.jar;D:\jdk-8u101-windows-i586\jre\lib\jsse.jar;D:\jdk-8u101-windows-i586\jre\lib\jce.jar;D:\jdk-8u101-windows-i586\jre\lib\charsets.jar;D:\jdk-8u101-windows-i586\jre\lib\jfr.jar;D:\jdk-8u101-windows-i586\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="F:\rbais\temp\AndrewsSpringExample\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+  </properties>
+  <testcase classname="com.aexample.test.AexampleServiceImplTest" name="testUserServiceCreate" time="0">
+    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1076)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:851)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 39 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:381)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration.entityManagerFactory(JUnitTestConfiguration.java:37)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$entityManagerFactory$2(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.entityManagerFactory(&lt;generated&gt;)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	... 57 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	... 78 more
+Caused by: java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:130)
+	at com.aexample.test.JUnitTestConfiguration.dataSource(JUnitTestConfiguration.java:59)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$dataSource$3(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	... 79 more
+Caused by: java.lang.ClassNotFoundException: org.hsqldb.jdbcDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:127)
+	... 90 more
+</error>
+    <system-out>web - 2016-11-16 02:19:28,443 [main] DEBUG o.s.t.c.j.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,459 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+web - 2016-11-16 02:19:28,459 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+web - 2016-11-16 02:19:28,474 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.aexample.test.AexampleServiceImplTest] from class [org.springframework.test.context.support.DefaultTestContextBootstrapper]
+web - 2016-11-16 02:19:28,490 [main] DEBUG o.s.t.c.s.AbstractDelegatingSmartContextLoader - Delegating to AnnotationConfigContextLoader to process context configuration [ContextConfigurationAttributes@1440df3 declaringClass = &apos;com.aexample.test.AexampleServiceImplTest&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, locations = &apos;{}&apos;, inheritLocations = true, initializers = &apos;{}&apos;, inheritInitializers = true, name = [null], contextLoaderClass = &apos;org.springframework.test.context.ContextLoader&apos;].
+web - 2016-11-16 02:19:28,506 [main] DEBUG o.s.t.c.support.ActiveProfilesUtils - Could not find an &apos;annotation declaring class&apos; for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,506 [main] DEBUG o.s.t.c.s.DefaultTestContextBootstrapper - @TestExecutionListeners is not present for class [com.aexample.test.AexampleServiceImplTest]: using defaults.
+web - 2016-11-16 02:19:28,506 [main] INFO  o.s.t.c.s.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+web - 2016-11-16 02:19:28,521 [main] INFO  o.s.t.c.s.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1cd892a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@b87145, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@83f5ae, org.springframework.test.context.support.DirtiesContextTestExecutionListener@19afc07, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2db087, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1d4cc9e]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.c.s.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@1416310 testClass = AexampleServiceImplTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.c.s.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@1416310 testClass = AexampleServiceImplTest, testInstance = com.aexample.test.AexampleServiceImplTest@1e3a06f, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]].
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.c.s.AbstractDelegatingSmartContextLoader - Delegating to AnnotationConfigContextLoader to load context from [MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]].
+web - 2016-11-16 02:19:28,521 [main] DEBUG o.s.t.c.s.AbstractGenericContextLoader - Loading ApplicationContext for merged context configuration [[MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+web - 2016-11-16 02:19:28,599 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+web - 2016-11-16 02:19:28,615 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+web - 2016-11-16 02:19:28,615 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+web - 2016-11-16 02:19:28,615 [main] DEBUG o.s.t.c.s.AnnotationConfigContextLoader - Registering annotated classes: {class com.aexample.test.JUnitTestConfiguration}
+web - 2016-11-16 02:19:28,646 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@fdb4a6: startup date [Wed Nov 16 02:19:28 EST 2016]; root of context hierarchy
+web - 2016-11-16 02:19:28,646 [main] DEBUG o.s.c.s.GenericApplicationContext - Bean factory for org.springframework.context.support.GenericApplicationContext@fdb4a6: org.springframework.beans.factory.support.DefaultListableBeanFactory@63f509: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,JUnitTestConfiguration]; root of factory hierarchy
+web - 2016-11-16 02:19:28,646 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,646 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,662 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,678 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registered bean definition for imported class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos;
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.org.springframework.transaction.config.internalTransactionAdvisor()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.transactionAttributeSource()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.transactionInterceptor()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.org.springframework.transaction.config.internalTransactionalEventListenerFactory()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.transactionManager()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.exceptionTranslation()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.entityManagerFactory()
+web - 2016-11-16 02:19:28,771 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.dataSource()
+web - 2016-11-16 02:19:28,896 [main] DEBUG o.s.c.a.ConfigurationClassEnhancer - Successfully enhanced com.aexample.test.JUnitTestConfiguration; enhanced class name is: com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a
+web - 2016-11-16 02:19:28,896 [main] DEBUG o.s.c.a.ConfigurationClassPostProcessor - Replacing bean definition &apos;JUnitTestConfiguration&apos; existing class &apos;com.aexample.test.JUnitTestConfiguration&apos; with enhanced class &apos;com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.c.a.ConfigurationClassEnhancer - Successfully enhanced org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration; enhanced class name is: org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1541e70b
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.c.a.ConfigurationClassPostProcessor - Replacing bean definition &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos; existing class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos; with enhanced class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1541e70b&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 &apos;javax.inject.Inject&apos; annotation found and supported for autowiring
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:28,912 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:28,928 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;JUnitTestConfiguration&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:28,928 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean &apos;JUnitTestConfiguration&apos; of type [class com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+web - 2016-11-16 02:19:28,928 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,006 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;exceptionTranslation&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,021 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:29,021 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,021 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,037 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,053 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,053 [main] DEBUG o.s.c.s.GenericApplicationContext - Unable to locate MessageSource with name &apos;messageSource&apos;: using default [org.springframework.context.support.DelegatingMessageSource@253c26]
+web - 2016-11-16 02:19:29,053 [main] DEBUG o.s.c.s.GenericApplicationContext - Unable to locate ApplicationEventMulticaster with name &apos;applicationEventMulticaster&apos;: using default [org.springframework.context.event.SimpleApplicationEventMulticaster@1001b64]
+web - 2016-11-16 02:19:29,053 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;entityManagerFactory&apos;
+web - 2016-11-16 02:19:29,053 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;entityManagerFactory&apos;
+web - 2016-11-16 02:19:29,068 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,099 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;dataSource&apos;
+web - 2016-11-16 02:19:29,099 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;dataSource&apos;
+web - 2016-11-16 02:19:29,099 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,115 [main] WARN  o.s.c.s.GenericApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@63f509: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,JUnitTestConfiguration,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor,org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration,org.springframework.transaction.config.internalTransactionAdvisor,transactionAttributeSource,transactionInterceptor,org.springframework.transaction.config.internalTransactionalEventListenerFactory,transactionManager,exceptionTranslation,entityManagerFactory,dataSource,org.springframework.aop.config.internalAutoProxyCreator]; root of factory hierarchy
+web - 2016-11-16 02:19:29,115 [main] ERROR o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@83f5ae] to prepare test instance [com.aexample.test.AexampleServiceImplTest@1e3a06f]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1076) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:851) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 39 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 56 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:381) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration.entityManagerFactory(JUnitTestConfiguration.java:37) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$entityManagerFactory$2(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;) ~[test-classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.entityManagerFactory(&lt;generated&gt;) ~[test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 57 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 78 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:130) ~[spring-jdbc-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration.dataSource(JUnitTestConfiguration.java:59) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$dataSource$3(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;) ~[test-classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;) ~[test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 79 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.hsqldb.jdbcDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[na:1.8.0_101]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_101]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331) ~[na:1.8.0_101]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_101]
+	at java.lang.Class.forName0(Native Method) ~[na:1.8.0_101]
+	at java.lang.Class.forName(Class.java:348) ~[na:1.8.0_101]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:127) ~[spring-jdbc-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 90 common frames omitted
+</system-out>
+  </testcase>
+  <testcase classname="com.aexample.test.AexampleServiceImplTest" name="testRegistrationServiceCreate" time="0">
+    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1076)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:851)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 39 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:381)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration.entityManagerFactory(JUnitTestConfiguration.java:37)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$entityManagerFactory$2(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.entityManagerFactory(&lt;generated&gt;)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	... 57 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	... 78 more
+Caused by: java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:130)
+	at com.aexample.test.JUnitTestConfiguration.dataSource(JUnitTestConfiguration.java:59)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$dataSource$3(&lt;generated&gt;)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	... 79 more
+Caused by: java.lang.ClassNotFoundException: org.hsqldb.jdbcDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:127)
+	... 90 more
+</error>
+    <system-out>web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.aexample.test.AexampleServiceImplTest]
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.t.c.s.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@1416310 testClass = AexampleServiceImplTest, testInstance = com.aexample.test.AexampleServiceImplTest@145bad8, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]].
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.t.c.s.AbstractDelegatingSmartContextLoader - Delegating to AnnotationConfigContextLoader to load context from [MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]].
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.t.c.s.AbstractGenericContextLoader - Loading ApplicationContext for merged context configuration [[MergedContextConfiguration@ab0bfb testClass = AexampleServiceImplTest, locations = &apos;{}&apos;, classes = &apos;{class com.aexample.test.JUnitTestConfiguration}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextCustomizers = set[[empty]], contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+web - 2016-11-16 02:19:29,115 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.t.c.s.AnnotationConfigContextLoader - Registering annotated classes: {class com.aexample.test.JUnitTestConfiguration}
+web - 2016-11-16 02:19:29,131 [main] INFO  o.s.c.s.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@d86a6f: startup date [Wed Nov 16 02:19:29 EST 2016]; root of context hierarchy
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.s.GenericApplicationContext - Bean factory for org.springframework.context.support.GenericApplicationContext@d86a6f: org.springframework.beans.factory.support.DefaultListableBeanFactory@892d68: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,JUnitTestConfiguration]; root of factory hierarchy
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalConfigurationAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registered bean definition for imported class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos;
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.org.springframework.transaction.config.internalTransactionAdvisor()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.transactionAttributeSource()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.transactionInterceptor()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration.org.springframework.transaction.config.internalTransactionalEventListenerFactory()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.transactionManager()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.exceptionTranslation()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.entityManagerFactory()
+web - 2016-11-16 02:19:29,131 [main] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method com.aexample.test.JUnitTestConfiguration.dataSource()
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.a.ConfigurationClassEnhancer - Successfully enhanced com.aexample.test.JUnitTestConfiguration; enhanced class name is: com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.a.ConfigurationClassPostProcessor - Replacing bean definition &apos;JUnitTestConfiguration&apos; existing class &apos;com.aexample.test.JUnitTestConfiguration&apos; with enhanced class &apos;com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.a.ConfigurationClassEnhancer - Successfully enhanced org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration; enhanced class name is: org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1541e70b
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.a.ConfigurationClassPostProcessor - Replacing bean definition &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos; existing class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&apos; with enhanced class &apos;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1541e70b&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 &apos;javax.inject.Inject&apos; annotation found and supported for autowiring
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalAutowiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalRequiredAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalCommonAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.internalPersistenceAnnotationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;JUnitTestConfiguration&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean &apos;JUnitTestConfiguration&apos; of type [class com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;exceptionTranslation&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;exceptionTranslation&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos; to allow for resolving potential circular references
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Finished creating instance of bean &apos;org.springframework.aop.config.internalAutoProxyCreator&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.s.GenericApplicationContext - Unable to locate MessageSource with name &apos;messageSource&apos;: using default [org.springframework.context.support.DelegatingMessageSource@1e153c5]
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.c.s.GenericApplicationContext - Unable to locate ApplicationEventMulticaster with name &apos;applicationEventMulticaster&apos;: using default [org.springframework.context.event.SimpleApplicationEventMulticaster@13ed316]
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;entityManagerFactory&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;entityManagerFactory&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;dataSource&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean &apos;dataSource&apos;
+web - 2016-11-16 02:19:29,146 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean &apos;JUnitTestConfiguration&apos;
+web - 2016-11-16 02:19:29,162 [main] WARN  o.s.c.s.GenericApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+web - 2016-11-16 02:19:29,162 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@892d68: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,JUnitTestConfiguration,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor,org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration,org.springframework.transaction.config.internalTransactionAdvisor,transactionAttributeSource,transactionInterceptor,org.springframework.transaction.config.internalTransactionalEventListenerFactory,transactionManager,exceptionTranslation,entityManagerFactory,dataSource,org.springframework.aop.config.internalAutoProxyCreator]; root of factory hierarchy
+web - 2016-11-16 02:19:29,162 [main] ERROR o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@83f5ae] to prepare test instance [com.aexample.test.AexampleServiceImplTest@145bad8]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191) [spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1076) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:851) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 39 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean]: Factory method &apos;entityManagerFactory&apos; threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 56 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;dataSource&apos; defined in com.aexample.test.JUnitTestConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1123) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1018) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:381) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration.entityManagerFactory(JUnitTestConfiguration.java:37) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$entityManagerFactory$2(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;) ~[test-classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.entityManagerFactory(&lt;generated&gt;) ~[test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 57 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method &apos;dataSource&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 78 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load JDBC driver class [org.hsqldb.jdbcDriver]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:130) ~[spring-jdbc-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration.dataSource(JUnitTestConfiguration.java:59) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.CGLIB$dataSource$3(&lt;generated&gt;) ~[test-classes/:na]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a$$FastClassBySpringCGLIB$$18f7e9e8.invoke(&lt;generated&gt;) ~[test-classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356) ~[spring-context-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	at com.aexample.test.JUnitTestConfiguration$$EnhancerBySpringCGLIB$$a838488a.dataSource(&lt;generated&gt;) ~[test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 79 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.hsqldb.jdbcDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[na:1.8.0_101]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_101]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331) ~[na:1.8.0_101]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_101]
+	at java.lang.Class.forName0(Native Method) ~[na:1.8.0_101]
+	at java.lang.Class.forName(Class.java:348) ~[na:1.8.0_101]
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:127) ~[spring-jdbc-4.3.2.RELEASE.jar:4.3.2.RELEASE]
+	... 90 common frames omitted
+</system-out>
+  </testcase>
+</testsuite>

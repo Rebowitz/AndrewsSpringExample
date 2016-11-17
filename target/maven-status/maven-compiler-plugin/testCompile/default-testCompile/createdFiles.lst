@@ -1,0 +1,6 @@
+com\aexample\test\JUnitTestConfiguration.class
+com\aexample\test\SpringTest.class
+com\aexample\test\AexampleTestConfiguration.class
+com\aexample\test\TestRunner.class
+com\aexample\test\TestSuite.class
+com\aexample\test\AexampleServiceImplTest.class
