@@ -28,13 +28,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 		"com.aexample.website.delegate",
 		"com.aexample.website.error",
 		"com.aexample.website.exception",
-		"com.aexample.website.service",
-		"com.aexample.website.service.impl",
+		//"com.aexample.website.service",
+		//"com.aexample.website.service.impl",
 		"com.aexample.website.util",
 		"com.aexample.website.validator",
 		"com.aexample.website.viewBean"
 })
 //Do not add config package to above list!!!
+//if above is commented, then the beans are created below
 public class AexampleTestConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(AexampleTestConfiguration.class);

@@ -5,12 +5,15 @@ package com.aexample.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.aexample.log4j.Slf4jTestWatcher;
 import com.aexample.website.service.IRegistrationService;
 import com.aexample.website.service.IUserService;
 
@@ -30,8 +33,10 @@ public class AexampleServiceImplTest {
 	@Autowired
 	private IUserService iUsrSvc;
 	
+	@Rule
+	public Slf4jTestWatcher watchman = new Slf4jTestWatcher();
 	
-	
+	 
 	
 	@Test
 	public void testRegistrationServiceCreate(){
@@ -64,6 +69,7 @@ public class AexampleServiceImplTest {
 		String result = iRegSvc.serviceInstantiated();
 		
 		assertEquals("Created",result);
+
 	}
 	
 	@Test

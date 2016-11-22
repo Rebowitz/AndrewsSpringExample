@@ -7,13 +7,16 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.springframework" level="DEBUG" />
-	<logger name="org.springframework.transaction" level="DEBUG" />
+	<logger name="com.aexample" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.springframework.transaction" level="ERROR" />
 
 	<!-- in order to debug some marshalling issues, this needs to be TRACE -->
-	<logger name="org.springframework.web.servlet.mvc" level="DEBUG" />
+	<logger name="org.springframework.web.servlet.mvc" level="ERROR" />
 
-	<root level="DEBUG">
+	<root level="ERROR">
 		<appender-ref ref="STDOUT" />
 	</root>
 
