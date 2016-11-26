@@ -103,15 +103,15 @@ public class RegistrationController {
 			account.setLastName(registrationBean.getLastName());
 			account.setEmail(registrationBean.getEmail());
 			account.setLoginId(registrationBean.getLoginId());
-			account.setProfileFlag(false);
+			account.setProfileFlag(Boolean.FALSE);
 			account.setPassword(registrationBean.getPassword());
 			account.setPlan(registrationBean.getPlan());
-			account.setAccountNonExpired(true);
-			account.setAccountNonLocked(true);
-			account.setEnabled(true);
+			account.setAccountNonExpired(Boolean.TRUE);
+			account.setAccountNonLocked(Boolean.TRUE);
+			account.setEnabled(Boolean.TRUE);
 			account.setRole("ROLE_USER");
 			account.setCreateDate(new Date());
-			account.setCredentialsNonExpired(true);
+			account.setCredentialsNonExpired(Boolean.TRUE);
 			//account.setPlan(planIndicator);
 			
 			logger.info("persisting account info");

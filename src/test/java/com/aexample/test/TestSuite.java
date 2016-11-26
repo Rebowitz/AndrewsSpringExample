@@ -16,6 +16,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
+   AccountPOJOCreationTest.class,
    AexampleServiceImplTest.class,   
 //   TestJunit2.class
 })

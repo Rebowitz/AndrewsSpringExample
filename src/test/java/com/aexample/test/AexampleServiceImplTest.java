@@ -40,31 +40,6 @@ public class AexampleServiceImplTest {
 	
 	@Test
 	public void testRegistrationServiceCreate(){
-/* need to move this to the appropriate unit test
-
-		Accounts entity = new Accounts();
-
-		entity.setOrgName("AExample");
-		entity.setFirstName("JUnit");
-		entity.setLastName("Test Case");
-		entity.setEmail("bogus@aexample.com");
-		entity.setLoginId("aexample");
-		entity.setProfileFlag(false);
-		entity.setPassword("cleartext");
-		entity.setPlan("Basic");
-		entity.setAccountNonExpired(true);
-		entity.setAccountNonLocked(true);
-		entity.setEnabled(true);
-		entity.setRole("ROLE_USER");
-		entity.setCreateDate(new Date());
-		entity.setCredentialsNonExpired(true);
-		
-		String retr = iRegSvc.create(entity);
-		String expected = "Registered";
-		
-		//check for successful persistence from service layer
-		assertEquals(retr,expected);
-	*/	
 		
 		String result = iRegSvc.serviceInstantiated();
 		
