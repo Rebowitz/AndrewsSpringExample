@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.test;
+package com.aexample.test.pojo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.test;
+package com.aexample.test.pojo;
 
 import static org.junit.Assert.*;
 
@@ -19,6 +19,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.aexample.log4j.Slf4jTestWatcher;
 import com.aexample.persistence.model.Accounts;
+import com.aexample.test.JUnitTestConfiguration;
 
 /**
  * @author Main Login

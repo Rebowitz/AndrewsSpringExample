@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `Accounts` (
   `LoginId` varchar(15) NOT NULL,
   `Password` varchar(15) NOT NULL,
   `ProfileComplete` tinyint(1) NOT NULL,
+  `Plan` varchar(15) NOT NULL,
   `Role` varchar(15) NOT NULL,
   `AccountNonExpired` tinyint(1) NOT NULL,
   `AccountNonLocked` tinyint(1) NOT NULL,

@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -33,12 +34,17 @@ import com.google.common.base.Preconditions;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-mysql.properties" })
+@ComponentScan({ "com.aexample.persistence" })
 @Import(AexampleTestConfiguration.class)
 public class JUnitTestConfiguration {
 
     @Autowired
     private Environment env;    
-	
+
+    public JUnitTestConfiguration() {
+        super();
+    }
+    
 	@Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -59,7 +65,6 @@ public class JUnitTestConfiguration {
         dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
         dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
         dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
-
         return dataSource;
     }
 
@@ -82,78 +87,5 @@ public class JUnitTestConfiguration {
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
     }
-/*    
-	
-	
-	
-	
-	
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){ 
-        LocalContainerEntityManagerFactoryBean lcemfb
-            = new LocalContainerEntityManagerFactoryBean();
- 
-        lcemfb.setDataSource(this.dataSource());
-        lcemfb.setPackagesToScan(new String[] {"com.aexample"});
-        lcemfb.setPersistenceUnitName("AexampleTestPU");
- 
-        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        lcemfb.setJpaVendorAdapter(va);
- 
-        Properties ps = new Properties();
-        ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-        ps.put("hibernate.hbm2ddl.auto", "create");
-        lcemfb.setJpaProperties(ps);
- 
-        lcemfb.afterPropertiesSet();
- 
-        return lcemfb;
-    }
-    
-    @Bean
-    public DataSource dataSource(){
- 
-        DriverManagerDataSource ds = new DriverManagerDataSource();
- 
-        ds.setDriverClassName("org.hsqldb.jdbcDriver");
-        ds.setUrl("jdbc:hsqldb:mem:testdb");
-        ds.setUsername("sa");
-        ds.setPassword("");
- 
-        return ds;
- 
-    }
-    
-    @Bean
-    public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
-        final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(emf);
-        return transactionManager;
-    }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
- 
-    /*
-    @Bean
-    public PlatformTransactionManager transactionManager(){
- 
-        JpaTransactionManager tm = new JpaTransactionManager();
- 
-        tm.setEntityManagerFactory(
-            this.entityManagerFactory().getObject() );
- 
-        return tm;
- 
-    }
- 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-        return new PersistenceExceptionTranslationPostProcessor();
-    }    
- */
-   
+	   
 }

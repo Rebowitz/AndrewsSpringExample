@@ -6,6 +6,7 @@ package com.aexample.persistence.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aexample.persistence.model.Accounts;
 
@@ -17,6 +18,7 @@ import com.aexample.persistence.model.Accounts;
  *
  */
 @Component
+@Transactional
 public interface IRegistrationDao
 {
 		Boolean isNewAccount();

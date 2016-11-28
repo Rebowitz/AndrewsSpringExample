@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.test;
+package com.aexample.test.service;
 
 import static org.junit.Assert.*;
 
@@ -12,8 +12,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aexample.log4j.Slf4jTestWatcher;
+import com.aexample.test.JUnitTestConfiguration;
 import com.aexample.website.service.IRegistrationService;
 import com.aexample.website.service.IUserService;
 
@@ -25,13 +27,10 @@ import com.aexample.website.service.IUserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={JUnitTestConfiguration.class})
-public class AexampleServiceImplTest {
+public class AexampleRegistrationServiceImplTest {
 
 	@Autowired
 	private IRegistrationService iRegSvc;
-	
-	@Autowired
-	private IUserService iUsrSvc;
 	
 	@Rule
 	public Slf4jTestWatcher watchman = new Slf4jTestWatcher();
@@ -47,11 +46,5 @@ public class AexampleServiceImplTest {
 
 	}
 	
-	@Test
-	public void testUserServiceCreate(){
-		String result = iUsrSvc.serviceInstantiated();
-		
-		assertEquals("Created",result);
-	}
 	
 }
