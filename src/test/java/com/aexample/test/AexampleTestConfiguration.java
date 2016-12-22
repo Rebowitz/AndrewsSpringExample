@@ -4,7 +4,7 @@ import com.aexample.persistence.dao.IRegistrationDao;
 import com.aexample.persistence.dao.IUserDao;
 import com.aexample.persistence.dao.impl.RegistrationDaoImpl;
 import com.aexample.persistence.dao.impl.UserDaoImpl;
-import com.aexample.spring.config.persistenceJPAConfig;
+import com.aexample.spring.config.PersistenceJPAConfig;
 import com.aexample.website.controller.RegistrationController;
 import com.aexample.website.service.IRegistrationService;
 import com.aexample.website.service.IUserService;

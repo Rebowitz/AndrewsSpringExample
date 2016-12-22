@@ -35,12 +35,12 @@ import com.google.common.base.Preconditions;
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-mysql.properties" })
 @ComponentScan({ "com.aexample.persistence" })
-public class persistenceJPAConfig {
+public class PersistenceJPAConfig {
 
     @Autowired
     private Environment env;
 
-    public persistenceJPAConfig() {
+    public PersistenceJPAConfig() {
         super();
     }
 
@@ -59,7 +59,7 @@ public class persistenceJPAConfig {
         return em;
     }
 
-    @Bean
+    @Bean(name="dataSource")
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));

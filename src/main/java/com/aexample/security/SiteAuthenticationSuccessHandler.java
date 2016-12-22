@@ -63,9 +63,11 @@ public class SiteAuthenticationSuccessHandler implements AuthenticationSuccessHa
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
                 isUser = true;
+                logger.info("granted authority is ROLE_USER");
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
+                logger.info("granted authority is ROLE_ADMIN");                
                 break;
             }
         }

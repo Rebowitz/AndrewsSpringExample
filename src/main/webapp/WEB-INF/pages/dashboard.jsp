@@ -7,7 +7,8 @@
 <title>Welcome</title>
 </head>
 <body>
-	<h1>Title : ${title}</h1>	
-	<h1>Message : ${message}</h1>	
+	<h1>${title}</h1>	
+	<h1>${message}</h1>
+	<h1>${message2}</h1>	
 </body>
 </html>

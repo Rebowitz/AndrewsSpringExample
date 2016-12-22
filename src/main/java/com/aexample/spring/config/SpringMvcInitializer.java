@@ -10,7 +10,9 @@ package com.aexample.spring.config;
  *
  */
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import com.aexample.spring.config.WebMvcConfig;
+
+import com.aexample.security.SpringSecurityConfig;
+
 
 
 public class SpringMvcInitializer 
@@ -18,7 +20,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 @Override
 protected Class<?>[] getRootConfigClasses() {
-	return new Class[] { WebMvcConfig.class };
+	return new Class[] { SpringSecurityConfig.class, WebMvcConfig.class };
 }
 
 @Override

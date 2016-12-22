@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ImportResource({"classpath:springBeanConfiguration.xml"})
 @ComponentScan("com.aexample")
 @EnableWebMvc
-@Import(persistenceJPAConfig.class)
+@Import({PersistenceJPAConfig.class,AuthenticationJPAConfig.class})
 /*This is a shortcut, and though it may be useful in many situations, it’s not perfect. 
  * When more complex confguration is needed, remove the EnableWebMvc annotation and extend 
  * WebMvcConfgurationSupport directly. 
