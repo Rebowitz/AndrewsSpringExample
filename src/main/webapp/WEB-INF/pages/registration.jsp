@@ -1,10 +1,14 @@
 <%@include file="include.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Orgify</title>
+		<title>Aexample</title>
 		
 		<link href="/website/resources/css/aexample.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -26,7 +30,7 @@
 <div id="container">
 
 
-	<div id="css-row2">
+<div id="css-row2">
 <div id="registration">	
 <form:form id="registrationForm" method="post" action="registration" modelAttribute="registrationBean">
 
@@ -36,54 +40,86 @@
             <table border="1" cellpadding="5">
                 <thead>
                     <tr>
-                        <th colspan="2">Enter Information Here</th>
+                        <th colspan="2"><spring:message code="label.form.title"></spring:message></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Organization Name</td>
-                        <td><input type="text" name="orgName" value="" /></td>
+                        <td><label>
+                        <spring:message code="label.user.organizationName"></spring:message>
+                        </label>
+                        </td>
+                        <td><form:input type="text" path="orgName" value="" size="50" maxlength="50"/></td>
                         <td><form:errors path="orgName" cssStyle="color: #ff0000;"/></td>
                     </tr>
                     <tr>
-                        <td>First Name</td>
-                        <td><input type="text" name="firstName" value="" /></td>
+                        <td><label>
+              				<spring:message code="label.user.firstName"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input type="text" path="firstName" value="" size="15" maxlength="15"/></td>
                         <td><form:errors path="firstName" cssStyle="color: #ff0000;"/></td>                        
                     </tr>
                     <tr>
-                        <td>Last Name</td>
-                        <td><input type="text" name="lastName" value="" /></td>
+                        <td><label>
+              				<spring:message code="label.user.lastName"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input type="text" path="lastName" value=""  size="25" maxlength="25"/></td>
                         <td><form:errors path="lastName" cssStyle="color: #ff0000;"/></td>                        
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
+						<td><label>
+              				<spring:message code="label.user.email"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input type="text" path="email" value=""  size="25" maxlength="50"/></td>
                         <td><form:errors path="email" cssStyle="color: #ff0000;"/></td>                        
                     </tr>
                     <tr>
-                        <td>Login Id</td>
-                        <td><input type="text" name="loginId" value="" /></td>
+                        <td><label>
+              				<spring:message code="label.user.loginId"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input pattern=".{8,15}" type="text" path="loginId" value="" size="15" maxlength="15"/></td>
                         <td><form:errors path="loginId" cssStyle="color: #ff0000;"/></td>                        
                     </tr>
                     <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password"/></td>
-                        <td><form:errors path="password" cssStyle="color: #ff0000;"/></td>                        
+                       <td><label>
+              				<spring:message code="label.user.password"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input pattern=".{8,15}" path="password" value="" type="password" size="15" maxlength="15"/></td>
+                        <form:errors path="password" element="div" cssStyle="color: #ff0000;"/>                        
                     </tr>
                     <tr>
-                        <td>Confirm Password</td>
-                        <td><input type="password" name="confirmPassword"/></td>
-                        <td><form:errors path="confirmPassword" cssStyle="color: #ff0000;"/></td>                        
+                        <td><label>
+              				<spring:message code="label.user.confirmPass"></spring:message>
+            				</label>
+            			</td>
+                        <td><form:input pattern=".{8,15}" path="matchingPassword" value="" type="password" size="15" maxlength="15"/></td>
+                        <td><form:errors element="div" cssStyle="color: #ff0000;"/></td>                        
                     </tr>                    
                     <tr>
-                        <td><input type="submit" value="Submit" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                      <td><button type="submit">
+          				<spring:message code="label.form.submit"></spring:message>
+        				</button>
+        			  </td>
+                      <td><button type="reset">
+                      	<spring:message code="label.form.reset"></spring:message>
+                      	</button>
+                      </td>
                     </tr>
 
                 </tbody>
             </table>
       </div>      
-        </form:form>
+
+    </form:form>
+    <br>
+    <a href="<c:url value="login.html" />">
+        <spring:message code="label.form.loginLink"></spring:message>
+    </a>
 
 	</div>        
 	
@@ -94,7 +130,7 @@
 
 
 
-		<div id="footer"><span><a href="index.html"> homepage </a> | <a href="mailto:rbais@rbais.com">contact </a> | <a href="http://validator.w3.org/check?uri=referer">xhtml </a> | <a href="http://jigsaw.w3.org/css-validator">css </a>|  &copy; 2015 Orgify - 165 Savannah Drive - Strasburg, Virginia 22657</span> 
+		<div id="footer"><span><a href="index.html"> homepage </a> | <a href="mailto:rbais@rbais.com">contact </a> | <a href="http://validator.w3.org/check?uri=referer">xhtml </a> | <a href="http://jigsaw.w3.org/css-validator">css </a>|  &copy; 2017 Robert B. Andrews - 165 Savannah Drive - Strasburg, Virginia 22657</span> 
 		</div>
 
 </div>	

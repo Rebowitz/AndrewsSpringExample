@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,6 +39,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
         .antMatchers("/login*").permitAll()
+        .antMatchers("/registration*").permitAll()
         .anyRequest().authenticated()		
 		.and().formLogin()
 	  			.loginPage("/login.html")
@@ -44,7 +47,6 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 	      .loginProcessingUrl("/aexample_login")
 	      .defaultSuccessUrl("/dashboard.html",true)
 	      .failureUrl("/login.html?error=true")
-	    /* .loginProcessingUrl("/j_spring_security_check")*/
 
 	    .and().logout().logoutSuccessUrl("/login?logout") 
 	     .and().exceptionHandling().accessDeniedPage("/403")
@@ -56,6 +58,10 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordencoder(){
     	return new BCryptPasswordEncoder();
     }
-	
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
 
 }

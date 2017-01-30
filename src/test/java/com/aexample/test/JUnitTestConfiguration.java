@@ -33,8 +33,8 @@ import com.google.common.base.Preconditions;
  */
 @Configuration
 @EnableTransactionManagement
-@PropertySource({ "classpath:persistence-mysql.properties" })
-@ComponentScan({ "com.aexample.persistence" })
+@PropertySource({ "classpath:persistence-mysql-test.properties" })
+@ComponentScan({ "com.aexample.persistence"})
 @Import(AexampleTestConfiguration.class)
 public class JUnitTestConfiguration {
 

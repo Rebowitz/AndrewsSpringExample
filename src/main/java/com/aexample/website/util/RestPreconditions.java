@@ -2,7 +2,7 @@ package com.aexample.website.util;
 
 import org.springframework.http.HttpStatus;
 
-import com.aexample.website.exception.MyResourceNotFoundException;
+import com.aexample.website.error.MyResourceNotFoundException;
 
 /**
  * Simple static methods to be called at the start of your own methods to verify correct arguments and state. If the Precondition fails, an {@link HttpStatus} code is thrown

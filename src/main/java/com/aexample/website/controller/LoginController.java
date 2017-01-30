@@ -31,6 +31,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 		}
 
+		/*
+		 * Spring security configuration will redirect a sucessful login to the dashboard page. 
+		 * Therefore there is no /login POST RequestMapping
+		 */		
+		
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
 		public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 				@RequestParam(value = "logout", required = false) String logout) {
