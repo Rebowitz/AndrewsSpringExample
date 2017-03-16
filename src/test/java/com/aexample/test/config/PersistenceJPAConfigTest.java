@@ -34,9 +34,9 @@ import com.aexample.spring.config.PersistenceJPAConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 
 @ContextConfiguration(classes = {  PersistenceJPAConfig.class}, loader = AnnotationConfigContextLoader.class)
-public class persistenceJPAConfigTest {
+public class PersistenceJPAConfigTest {
 	
-	private static final Logger logger = LoggerFactory.getLogger(persistenceJPAConfigTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(PersistenceJPAConfigTest.class);
 	
     @Autowired
     private ApplicationContext context;
