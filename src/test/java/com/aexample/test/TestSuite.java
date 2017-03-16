@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
 
 import com.aexample.test.bean.LoginViewBeanTest;
 import com.aexample.test.bean.RegistrationViewBeanTest;
-import com.aexample.test.config.persistenceJPAConfigTest;
+import com.aexample.test.config.PersistenceJPAConfigTest;
 import com.aexample.test.controller.DashboardControllerTest;
 import com.aexample.test.controller.LoginControllerTest;
 import com.aexample.test.controller.RegistrationControllerTest;
@@ -31,7 +31,7 @@ import com.aexample.test.service.AexampleUserServiceImplTest;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-   persistenceJPAConfigTest.class,
+   PersistenceJPAConfigTest.class,
 //   AccountPOJOCreationTest.class,
 //  LoginViewBeanTest.class,
 //   RegistrationViewBeanTest.class,
