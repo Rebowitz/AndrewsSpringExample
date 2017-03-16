@@ -40,6 +40,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
 		.antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
         .antMatchers("/login*").permitAll()
         .antMatchers("/registration*").permitAll()
+        .antMatchers("/rest/**").permitAll()
         .anyRequest().authenticated()		
 		.and().formLogin()
 	  			.loginPage("/login.html")

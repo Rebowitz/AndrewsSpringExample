@@ -7,6 +7,12 @@
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+    <bean id="simpleTraceInterceptor" class="org.springframework.aop.interceptor.SimpleTraceInterceptor">
+        <property name="useDynamicLogger" value="true"/>
+    </bean>
+    <bean id="debugInterceptor" class="org.springframework.aop.interceptor.DebugInterceptor">
+        <property name="useDynamicLogger" value="true"/>
+    </bean>
 
 	<!-- note that bean id is similar to the interface name, but the class is 
 		the implementation class for the interface -->
@@ -15,10 +21,12 @@
 
 	<bean id="userService" class="com.aexample.website.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
+		<property name="interceptorNames" value="simpleTraceInterceptor"/>
 	</bean>
 
 	<bean id="loginDelegate" class="com.aexample.website.delegate.LoginDelegate">
 		<property name="userService" ref="userService"></property>
+		<property name="interceptorNames" value="simpleTraceInterceptor"/>
 	</bean>
 
 	<!-- <bean id="registrationValidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 

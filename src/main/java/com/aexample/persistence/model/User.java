@@ -23,8 +23,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String organizationKey;
 
-    private String firstName;
+	private String firstName;
 
     private String lastName;
 
@@ -38,8 +40,10 @@ public class User {
     private boolean isUsing2FA;
 
     private String secret;
+    
+    private String deviceId;
 
-    //
+    //user roles determine website access levels, such as prospective member, member, officer, admin
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -58,7 +62,15 @@ public class User {
     public void setId(final Long id) {
         this.id = id;
     }
+    
+	public String getOrganizationKey() {
+		return organizationKey;
+	}
 
+	public void setOrganizationKey(String organizationKey) {
+		this.organizationKey = organizationKey;
+	}
+	
     public String getFirstName() {
         return firstName;
     }
@@ -123,6 +135,14 @@ public class User {
         this.secret = secret;
     }
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;
