@@ -62,6 +62,10 @@ public class Accounts implements java.io.Serializable {
 	@Column(name="CreateDate")
 	private Date createDate;
 
+    private boolean isUsing2FA;
+
+    private String secret;
+    
 	public Accounts() {
 	}
 
@@ -205,5 +209,19 @@ public class Accounts implements java.io.Serializable {
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
 	}
-	
+	 public boolean isUsing2FA() {
+	        return isUsing2FA;
+	    }
+
+	    public void setUsing2FA(boolean isUsing2FA) {
+	        this.isUsing2FA = isUsing2FA;
+	    }
+
+	    public String getSecret() {
+	        return secret;
+	    }
+
+	    public void setSecret(String secret) {
+	        this.secret = secret;
+	    }	
 }

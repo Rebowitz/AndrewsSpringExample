@@ -26,10 +26,11 @@ public class LoginDelegate
 		{
 				this.iUserService = iUserService;
 		}
-
+/*
 		public Accounts isValidUser(String username, String password) throws SQLException 
 		{
 					
-		    return iUserService.isValidUser(username, password);
+		    return iUserService..isValidUser(username, password);
 		}
+*/		
 }
