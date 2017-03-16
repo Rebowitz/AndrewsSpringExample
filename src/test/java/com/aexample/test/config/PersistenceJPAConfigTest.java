@@ -18,6 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -31,7 +32,8 @@ import com.aexample.spring.config.PersistenceJPAConfig;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = PersistenceJPAConfig.class)
+
+@ContextConfiguration(classes = {  PersistenceJPAConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class persistenceJPAConfigTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(persistenceJPAConfigTest.class);
@@ -101,7 +103,8 @@ public class persistenceJPAConfigTest {
 	
 	/**
 	 * Test method for {@link com.aexample.spring.config.PersistenceJPAConfig#entityManagerFactory()}.
-	 */    
+	 */   
+	
 	@Test
 	public void testEntityManagerFactory() {
 		assertNotNull(lcemfb);
