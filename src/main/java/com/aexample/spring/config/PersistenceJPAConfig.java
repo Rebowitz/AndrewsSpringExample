@@ -54,12 +54,11 @@ public class PersistenceJPAConfig {
     }
 
     // beans
-
+    //NOTE DATASOURCE BEAN INJECTION IN THE CONSTRUCTOR
     @Bean
-    @Resource(name="dataSource")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory( DataSource dataSource) {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(dataSource);
         em.setPackagesToScan(new String[] { "com.aexample.persistence.model" });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
