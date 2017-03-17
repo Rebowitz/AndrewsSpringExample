@@ -48,7 +48,7 @@ public class AuthenticationJPAConfig{
     }
 
     
-    @Bean(name="dataSourceAuth")
+    //@Bean(name="dataSourceAuth")
     public DataSource dataSourceAuth() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));

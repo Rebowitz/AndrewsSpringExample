@@ -13,6 +13,7 @@ package com.aexample.spring.config;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.inject.Qualifier;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -54,11 +55,10 @@ public class PersistenceJPAConfig {
     }
 
     // beans
-    //NOTE DATASOURCE BEAN INJECTION IN THE CONSTRUCTOR
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory( DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
+        em.setDataSource(dataSource());
         em.setPackagesToScan(new String[] { "com.aexample.persistence.model" });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -68,7 +68,7 @@ public class PersistenceJPAConfig {
         return em;
     }
 
-    @Bean(name="dataSource")
+  //  @Bean(name="dataSource")
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
