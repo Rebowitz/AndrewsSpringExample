@@ -12,6 +12,7 @@ package com.aexample.spring.config;
 
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -55,6 +56,7 @@ public class PersistenceJPAConfig {
     // beans
 
     @Bean
+    @Resource(name="dataSource")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
