@@ -16,7 +16,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 @ComponentScan(basePackages = { "com.aexample.registration" })
-@PropertySource("classpath:email.properties")
+@PropertySource(value = "classpath:email.properties", ignoreResourceNotFound = true)
 public class AppConfig {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
