@@ -1,18 +1,20 @@
-package com.aexample.website.validator;
+package com.aexample.website.validation;
 
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
+import com.aexample.annotations.ILogger;
 import com.aexample.website.viewBean.RegistrationBean;
 
 @Component
 public class RegistrationValidator implements Validator {
 		
-		private static final Logger logger = LoggerFactory.getLogger(RegistrationValidator.class);			
+//		private static final Logger logger = LoggerFactory.getLogger(RegistrationValidator.class);			
+	private static @ILogger Logger logger;	
 	
 		//which objects can be validated by this validator
 		@Override

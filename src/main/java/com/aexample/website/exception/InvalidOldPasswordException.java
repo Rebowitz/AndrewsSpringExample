@@ -1,4 +1,4 @@
-package com.aexample.website.error;
+package com.aexample.website.exception;
 
 public final class InvalidOldPasswordException extends RuntimeException {
 

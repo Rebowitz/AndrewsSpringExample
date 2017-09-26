@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.website.error;
+package com.aexample.website.exception;
 
 /**
  * @author Main Login

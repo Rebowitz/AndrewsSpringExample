@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.website.validator;
+package com.aexample.website.validation;
 
 /**
  * @author Main Login
@@ -11,6 +11,8 @@ package com.aexample.website.validator;
  */
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import com.aexample.annotations.IValidPhoneNumber;
 
 public class PhoneNumberValidator implements ConstraintValidator<IValidPhoneNumber, String> {
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.website.validator;
+package com.aexample.website.validation;
 
 /**
  * @author Main Login

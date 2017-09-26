@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.aexample.website.validator;
+package com.aexample.website.validation;
 
 /**
  * @author Main Login
@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import com.aexample.annotations.IValidEmail;
 
 public class EmailValidator implements ConstraintValidator<IValidEmail, String> {
     private Pattern pattern;
