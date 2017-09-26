@@ -1,10 +1,11 @@
 package com.aexample.spring.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 @EnableScheduling
@@ -12,4 +13,13 @@ import org.springframework.stereotype.Component;
 @PropertySource({ "classpath:cron.properties" })
 public class SpringTaskConfig {
 
+	@Bean
+	public ThreadPoolTaskExecutor taskExecutor() {
+		ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
+		pool.setCorePoolSize(5);
+		pool.setMaxPoolSize(10);
+		pool.setWaitForTasksToCompleteOnShutdown(true);
+		return pool;
+	}
+	
 }

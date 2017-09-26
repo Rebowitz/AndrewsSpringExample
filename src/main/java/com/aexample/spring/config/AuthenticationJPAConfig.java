@@ -3,21 +3,15 @@
  */
 package com.aexample.spring.config;
 
-import java.io.InputStream;
-import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.google.common.base.Preconditions;
@@ -29,9 +23,8 @@ import com.google.common.base.Preconditions;
  *
  */
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 @PropertySource({ "classpath:persistence-mysql.properties" })
-@ComponentScan({ "com.aexample.persistence" })
 public class AuthenticationJPAConfig{
 
 /*
@@ -48,7 +41,7 @@ public class AuthenticationJPAConfig{
     }
 
     
-    //@Bean(name="dataSourceAuth")
+    @Bean(name="dataSourceAuth")
     public DataSource dataSourceAuth() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
@@ -59,12 +52,13 @@ public class AuthenticationJPAConfig{
         return dataSource;
     }
     
-    @Bean(name="userDetailsService")
-    public UserDetailsService userDetailsService(){
+ //   @Bean(name="userDetailsService")   commented out in way of caution
+ /*   public UserDetailsService userDetailsService(){
     	JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
     	jdbcImpl.setDataSource(dataSourceAuth());
-    	jdbcImpl.setUsersByUsernameQuery("select LoginId,Password, Enabled from Accounts where LoginId=?");
-    	jdbcImpl.setAuthoritiesByUsernameQuery("select b.LoginId, a.Role from UserRole a, Accounts b where b.LoginId=? and a.LoginId=b.LoginId");
+    	jdbcImpl.setUsersByUsernameQuery("select id,password, enabled from userAccount where id=?");
+    	jdbcImpl.setAuthoritiesByUsernameQuery("select b.id, a.authority from authorities a, userAccount b where b.id=? and a.id=b.id");
     	return jdbcImpl;
-    }	
+    }
+*/    	
 }

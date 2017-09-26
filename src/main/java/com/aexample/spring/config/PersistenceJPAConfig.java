@@ -12,18 +12,13 @@ package com.aexample.spring.config;
 
 import java.util.Properties;
 
-import javax.annotation.Resource;
-import javax.inject.Qualifier;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -31,19 +26,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.google.common.base.Preconditions;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 @PropertySource({ "classpath:persistence-mysql.properties" })
-@ComponentScan(basePackages = {"com.aexample.persistence"},
-		includeFilters = @Filter(type = FilterType.REGEX, pattern="com.aexample.persistence.*"))
 @EnableJpaRepositories(basePackages = "com.aexample.persistence.repositories")
 public class PersistenceJPAConfig {
 
@@ -79,8 +68,8 @@ public class PersistenceJPAConfig {
         return dataSource;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
+    @Bean(name="transactionManager")
+    public JpaTransactionManager transactionManager(final EntityManagerFactory emf) {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
@@ -89,16 +78,6 @@ public class PersistenceJPAConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-    	return new BCryptPasswordEncoder();
-    }
-    
-    @Bean
-    public SessionRegistry sessionRegistry(){
-    	return new SessionRegistryImpl();
     }
     
     final Properties additionalProperties() {
@@ -109,4 +88,6 @@ public class PersistenceJPAConfig {
         return hibernateProperties;
     }
 
+    
+    
 }
