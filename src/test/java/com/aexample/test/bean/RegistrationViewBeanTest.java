@@ -14,13 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.aexample.annotations.ILogger;
 import com.aexample.log4j.Slf4jTestWatcher;
 
 //the bean to be tested
 import com.aexample.website.viewBean.RegistrationBean;
 //the bean to be tested
 
-import com.aexample.test.JUnitTestConfiguration;
+import com.aexample.test.config.AexampleTestConfiguration;
 import com.aexample.test.pojo.AbstractPOJOTester;
 
 
@@ -32,11 +34,13 @@ import com.aexample.test.pojo.AbstractPOJOTester;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={JUnitTestConfiguration.class})
+@ContextConfiguration(classes={AexampleTestConfiguration.class})
 public class RegistrationViewBeanTest {
 
 	//change this to read the class name of the test
-	private static final Logger logger = LoggerFactory.getLogger(RegistrationViewBeanTest.class);	
+//	private static final Logger logger = LoggerFactory.getLogger(RegistrationViewBeanTest.class);
+	private static @ILogger Logger logger;	
+	
 	AbstractPOJOTester apt = new AbstractPOJOTester();
 	
 		@Rule
@@ -59,6 +63,7 @@ public class RegistrationViewBeanTest {
 			RegistrationBean rb1 = new RegistrationBean();
 			RegistrationBean rb2 = new RegistrationBean();
 			RegistrationBean rb3 = new RegistrationBean();			
+			RegistrationBean rb4 = new RegistrationBean();
 			
 			//not necessary to set all fields for an object equals and hashcode test
 			rb1.setOrgName("RB1");
@@ -72,9 +77,15 @@ public class RegistrationViewBeanTest {
 			rb3.setOrgName("RB1");
 			rb3.setPassword("RB1Pass");
 			rb3.setPlan("RBean1");
+
+			rb4.setOrgName("RB1");
+			rb4.setPassword("RB1Pass");
+			rb4.setPlan("RBean1");
 			
 			AbstractEqualsTester<RegistrationBean> equalsTester = AbstractEqualsTester.newInstance(rb1);
+			equalsTester.assertImplementsEqualsAndHashCode();
 			equalsTester.assertEqual(rb1, rb3);
+			equalsTester.assertEqual(rb1, rb3, rb4);			
 			equalsTester.assertNotEqual(rb1, rb2);				
 			
 		}

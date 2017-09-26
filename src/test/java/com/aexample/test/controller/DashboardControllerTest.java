@@ -24,7 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.aexample.test.JUnitTestConfiguration;
+import com.aexample.annotations.ILogger;
+import com.aexample.test.config.AexampleTestConfiguration;
 import com.aexample.website.controller.DashboardController;
 
 
@@ -35,10 +36,11 @@ import com.aexample.website.controller.DashboardController;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={JUnitTestConfiguration.class})
+@ContextConfiguration(classes={AexampleTestConfiguration.class})
 @WebAppConfiguration
 public class DashboardControllerTest {
-	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
+	private static @ILogger Logger logger;	
 	
     @Autowired
     private WebApplicationContext ctx;

@@ -1,0 +1,47 @@
+[
+		{
+			"configname": "REGCONFIRM",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "WELCOME",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "RESENDREGTOKEN",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "RESETPASSWORD",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		}				
+				
+]

@@ -3,7 +3,7 @@
  */
 package com.aexample.test;
 
-import org.junit.BeforeClass;
+
 
 /**
  * @author Main Login
@@ -14,24 +14,14 @@ import org.junit.BeforeClass;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.springframework.context.annotation.Import;
 
-import com.aexample.test.bean.LoginViewBeanTest;
-import com.aexample.test.bean.RegistrationViewBeanTest;
-import com.aexample.test.config.PersistenceJPAConfigTest;
-import com.aexample.test.controller.DashboardControllerTest;
-import com.aexample.test.controller.LoginControllerTest;
-import com.aexample.test.controller.RegistrationControllerTest;
-import com.aexample.test.dao.AexampleRegistrationDaoTest;
-import com.aexample.test.pojo.AccountPOJOCreationTest;
-import com.aexample.test.service.AexampleRegistrationServiceImplTest;
-import com.aexample.test.service.AexampleUserServiceImplTest;
+import com.aexample.test.service.AexampleUserLoginAttemptsServiceImplTest;
 
 
 @RunWith(Suite.class)
-
 @Suite.SuiteClasses({
-   PersistenceJPAConfigTest.class,
+	AexampleUserLoginAttemptsServiceImplTest.class	
+//	UserObjectTest.class
 //   AccountPOJOCreationTest.class,
 //  LoginViewBeanTest.class,
 //   RegistrationViewBeanTest.class,
@@ -42,11 +32,29 @@ import com.aexample.test.service.AexampleUserServiceImplTest;
 //   RegistrationControllerTest.class,
 //   DashboardControllerTest.class
 })
-
-@Import(JUnitTestConfiguration.class)
 public class TestSuite {
-	@BeforeClass
-	public static void setup(){
-		
-	}
+
+	
+ //   static SessionFactoryUtil util;
+    
+    // This is a static field.  Per the ClassRule documentation,
+    // to use a ClassRule we need a field that is "public, static,
+    // and a subtype of of TestRule."
+    // See http://junit.czweb.org/apidocs/org/junit/ClassRule.html
+/*    @ClassRule
+    public static ExternalResource testRule = new ExternalResource(){
+        @Override
+        protected void before() throws Throwable{
+        	Logger logger = LoggerFactory.getLogger(com.aexample.test.TestSuite.class);
+            logger.debug("Inside RuleSuite::ExternalResource::before.");
+  //          util = new SessionFactoryUtil();
+        };
+ 
+        @Override
+        protected void after(){
+            // Nothing to do here in this case.
+        	Logger logger = LoggerFactory.getLogger(com.aexample.test.TestSuite.class);
+            logger.debug("Inside RuleSuite::ExternalResource::after.");       };
+    };
+   */ 	
 }

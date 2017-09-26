@@ -14,12 +14,15 @@ package com.aexample.log4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.aexample.annotations.ILogger;
+
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
  
 public class Slf4jTestWatcher extends TestWatcher{
  
-	private static final Logger logger = LoggerFactory.getLogger(Slf4jTestWatcher.class);	
+//	private static final Logger logger = LoggerFactory.getLogger(Slf4jTestWatcher.class);
+	private static @ILogger Logger logger;		
  
     	@Override
         protected void starting(Description d) {

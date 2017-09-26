@@ -52,6 +52,8 @@ public class AbstractPOJOTester {
 				ReflectionTestUtils.invokeSetterMethod(plainPOJO,key,fieldList.get(key),Date.class);				
 			}else if(value instanceof Long){
 				ReflectionTestUtils.invokeSetterMethod(plainPOJO,key,fieldList.get(key),Long.class);				
+			}else if(value instanceof Integer){
+				ReflectionTestUtils.invokeSetterMethod(plainPOJO,key,fieldList.get(key),Integer.class);				
 			}else{
 				//oops!! fail assertion
 				assertTrue(false);
@@ -69,6 +71,8 @@ public class AbstractPOJOTester {
 				assertEquals((Date) fieldObj, ReflectionTestUtils.invokeGetterMethod(plainPOJO, key));
 			}else if(fieldObj instanceof Long){
 				assertEquals((Long) fieldObj, ReflectionTestUtils.invokeGetterMethod(plainPOJO, key));
+			}else if(fieldObj instanceof Integer){
+				assertEquals((Integer) fieldObj, ReflectionTestUtils.invokeGetterMethod(plainPOJO, key));
 			}else{
 				assertTrue(false);
 			}
