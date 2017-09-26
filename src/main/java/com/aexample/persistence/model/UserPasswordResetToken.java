@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity
+
+@Entity(name = "userPasswordResetToken")
+@Table(name = "userPasswordResetToken")
 public class UserPasswordResetToken {
 
     private static final int EXPIRATION = 60 * 24;
@@ -22,9 +25,9 @@ public class UserPasswordResetToken {
 
     private String token;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = UserAccount.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
-    private User user;
+    private UserAccount user;
 
     private Date expiryDate;
 
@@ -39,7 +42,7 @@ public class UserPasswordResetToken {
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
-    public UserPasswordResetToken(final String token, final User user) {
+    public UserPasswordResetToken(final String token, final UserAccount user) {
         super();
 
         this.token = token;
@@ -60,11 +63,11 @@ public class UserPasswordResetToken {
         this.token = token;
     }
 
-    public User getUser() {
+    public UserAccount getUser() {
         return user;
     }
 
-    public void setUser(final User user) {
+    public void setUser(final UserAccount user) {
         this.user = user;
     }
 

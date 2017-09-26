@@ -6,8 +6,8 @@ package com.aexample.website.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.aexample.website.validator.IValidEmail;
-import com.aexample.website.validator.IValidPassword;
+import com.aexample.annotations.IValidEmail;
+import com.aexample.annotations.IValidPassword;
 
 /**
  * @author Main Login
@@ -15,6 +15,7 @@ import com.aexample.website.validator.IValidPassword;
  * $Date$
  *
  */
+@IValidPassword
 public class RegistrationDto {
 
 
@@ -34,9 +35,7 @@ public class RegistrationDto {
     @Size(min = 1)
     String email;
 
-    @IValidPassword
     String password;
-
 
     Boolean registered;
 

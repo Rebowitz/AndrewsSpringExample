@@ -1,12 +1,12 @@
 package com.aexample.website.dto;
 
-import com.aexample.website.validator.IValidPassword;
+import com.aexample.annotations.IValidPassword;
 
+@IValidPassword
 public class PasswordDto {
 
     private String oldPassword;
 
-    @IValidPassword
     private String newPassword;
 
     public String getOldPassword() {

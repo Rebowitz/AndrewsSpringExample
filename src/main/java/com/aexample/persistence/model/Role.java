@@ -1,30 +1,38 @@
+/**
+ * 
+ */
 package com.aexample.persistence.model;
 
+/**
+ * @author Main Login
+ * $Rev$
+ * $Date$
+ *
+ */
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.aexample.domain.AbstractDomainClass;
+
 
 @Entity
-public class Role {
+@Table(name = "roles")
+public class Role extends AbstractDomainClass {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+    private String name;
+    
+    @ManyToMany(mappedBy = "roles")  //this is the mapped name in the UserAccount class
+    private Collection<UserAccount> users;
 
     @ManyToMany
     @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges;
-
-    private String name;
 
     public Role() {
         super();
@@ -35,16 +43,6 @@ public class Role {
         this.name = name;
     }
 
-    //
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -53,11 +51,11 @@ public class Role {
         this.name = name;
     }
 
-    public Collection<User> getUsers() {
+    public Collection<UserAccount> getUsers() {
         return users;
     }
 
-    public void setUsers(final Collection<User> users) {
+    public void setUsers(final Set<UserAccount> users) {
         this.users = users;
     }
 
@@ -98,7 +96,7 @@ public class Role {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Role [name=").append(name).append("]").append("[id=").append(id).append("]");
+        builder.append("Role [name=").append(name).append("]");
         return builder.toString();
     }
 }

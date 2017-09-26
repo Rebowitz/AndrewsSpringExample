@@ -1,5 +1,14 @@
+/**
+ * 
+ */
 package com.aexample.persistence.model;
 
+/**
+ * @author Main Login
+ * $Rev$
+ * $Date$
+ *
+ */
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -7,8 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "privileges")
 public class Privilege {
 
     @Id
@@ -18,7 +29,7 @@ public class Privilege {
     private String name;
 
     @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> roles;
+    private Collection<Role> role;
 
     public Privilege() {
         super();
@@ -48,11 +59,11 @@ public class Privilege {
     }
 
     public Collection<Role> getRoles() {
-        return roles;
+        return role;
     }
 
-    public void setRoles(final Collection<Role> roles) {
-        this.roles = roles;
+    public void setRole(final Collection<Role> role) {
+        this.role = role;
     }
 
     @Override
@@ -87,3 +98,4 @@ public class Privilege {
         return builder.toString();
     }
 }
+

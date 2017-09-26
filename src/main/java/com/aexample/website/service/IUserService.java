@@ -3,85 +3,66 @@
  */
 package com.aexample.website.service;
 
-import java.sql.SQLException;
-
-import com.aexample.persistence.model.Accounts;
-
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserPasswordResetToken;
-import com.aexample.persistence.model.User;
 import com.aexample.persistence.model.UserVerificationToken;
 import com.aexample.website.dto.UserDto;
-import com.aexample.website.error.UserAlreadyExistsException;
-
-
+import com.aexample.website.exception.UserAlreadyExistsException;
 
 
 /**
  * @author RBA
  *
  */
-public interface IUserService
-{
+public interface IUserService{	
 
-    User registerNewUserAccount(UserDto accountDto) throws UserAlreadyExistsException;
+    UserAccount registerNewUserAccount(UserDto accountDto) throws UserAlreadyExistsException;
 
-    User getUser(String verificationToken);
+    UserAccount getUser(String verificationToken);
 
-    void saveRegisteredUser(User user);
+    void saveRegisteredUser(UserAccount user);
 
-    void deleteUser(User user);
+    void deleteUser(UserAccount user);
+    
+    String generateTokenValue();
 
-    void createVerificationTokenForUser(User user, String token);
+    void createVerificationTokenForUser(UserAccount user, String token);
 
     UserVerificationToken getVerificationToken(String VerificationToken);
 
     UserVerificationToken generateNewVerificationToken(String token);
 
-    void createPasswordResetTokenForUser(User user, String token);
+    void createPasswordResetTokenForUser(UserAccount user, String token);
 
-    User findUserByEmail(String email);
+    UserAccount findUserByEmail(String email);
 
     UserPasswordResetToken getPasswordResetToken(String token);
 
-    User getUserByPasswordResetToken(String token);
+    UserAccount getUserByPasswordResetToken(String token);
 
-    User getUserByID(long id);
+    UserAccount getUserByID(long id);
 
-    void changeUserPassword(User user, String password);
+    void changeUserPassword(UserAccount user, String password);
 
-    boolean checkIfValidOldPassword(User user, String password);
+    boolean checkIfValidOldPassword(UserAccount user, String password);
 
     String validateVerificationToken(String token);
 
-    String generateQRUrl(User user) throws UnsupportedEncodingException;
-
-    User updateUser2FA(boolean use2FA);
 
     List<String> getUsersFromSessionRegistry();
     
-	public String serviceInstantiated();    
-	
-/* old user methods hanging onto them for now	
-	
-	public Accounts isValidUser(String username, String password) throws SQLException;
+	public String serviceInstantiated();
 
-		public Accounts findOne(Long id);
+	void delete(Long id);
 
-		public Long create(Accounts resource);
-		
-		public Long update(Accounts resource);
-		
-		public Long getById(Long id);
-		
-		public Long deleteById(Long id);
-		
-		public Accounts getByLoginId(String loginId);
-		
-		public String serviceInstantiated();
-		
-*/
+	UserAccount saveOrUpdate(UserAccount user);
+
+	UserAccount getById(Integer id);
+
+	void delete(Integer id);
+
+	List<?> listAll();    
 	
 }

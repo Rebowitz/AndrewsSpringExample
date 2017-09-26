@@ -2,131 +2,135 @@ package com.aexample.website.service.impl;
 
 
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 //import javax.transaction.Transactional;
 
+import com.aexample.annotations.ILogger;
+import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserPasswordResetToken;
-import com.aexample.persistence.model.User;
 import com.aexample.persistence.model.UserVerificationToken;
-import com.aexample.persistence.repositories.IUserPasswordResetTokenRepository;
 import com.aexample.persistence.repositories.IRoleRepository;
+import com.aexample.persistence.repositories.IUserPasswordResetTokenRepository;
 import com.aexample.persistence.repositories.IUserRepository;
 import com.aexample.persistence.repositories.IUserVerificationTokenRepository;
+import com.aexample.security.IEncryptionService;
 import com.aexample.website.dto.UserDto;
-import com.aexample.website.error.UserAlreadyExistsException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-
-import com.aexample.persistence.dao.IUserDao;
-import com.aexample.persistence.model.Accounts;
+import com.aexample.website.exception.UserAlreadyExistsException;
 import com.aexample.website.service.IUserService;
-
-
-
-/* old imports holding onto for now
-
-import java.sql.SQLException;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.aexample.persistence.dao.IUserDao;
-import com.aexample.persistence.model.Accounts;
-import com.aexample.website.service.IUserService;
-
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-*/
-
 
 @Service
 @Transactional
 public class UserServiceImpl implements IUserService
 {
 
-
-    @Autowired
-    private IUserRepository repository;
-
-    @Autowired
+//	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static @ILogger Logger logger;	
+	
+@Autowired
+	private IUserRepository userRepository;
+    private IRoleRepository roleRepository;    
     private IUserVerificationTokenRepository tokenRepository;
-
-    @Autowired
     private IUserPasswordResetTokenRepository passwordTokenRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
+    private IEncryptionService encryptionService;
 
     @Autowired
-    private IRoleRepository roleRepository;
+    public void setIUserRepository(IUserRepository userRepository){
+    	this.userRepository = userRepository;
+    }
+    
+    @Autowired
+    public void setIRoleRepository(IRoleRepository roleRepository){
+    	this.roleRepository = roleRepository;
+    }
 
     @Autowired
-    private SessionRegistry sessionRegistry;
+    public void setIUserVerificationTokenRepository(IUserVerificationTokenRepository tokenRepository){
+    	this.tokenRepository = tokenRepository;
+    }
 
-    public static final String TOKEN_INVALID = "invalidToken";
+    @Autowired
+    public void setIUserPasswordResetTokenRepository(IUserPasswordResetTokenRepository passwordTokenRepository){
+    	this.passwordTokenRepository = passwordTokenRepository;
+    }
+    
+    @Autowired
+    public void setEncryptionService(IEncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
+    }
+    
+	public static final String TOKEN_INVALID = "invalidToken";
     public static final String TOKEN_EXPIRED = "expired";
     public static final String TOKEN_VALID = "valid";
 
-    public static String QR_PREFIX = "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
-    public static String APP_NAME = "SpringRegistration";
-
     // API
-
+    @Transactional
     @Override
-    public User registerNewUserAccount(final UserDto accountDto) {
+    public UserAccount registerNewUserAccount(final UserDto accountDto){
         if (emailExist(accountDto.getEmail())) {
-            throw new UserAlreadyExistsException("There is an account with that email adress: " + accountDto.getEmail());
+            throw new UserAlreadyExistsException("There is a current account with that email address: " + accountDto.getEmail());
         }
-        final User user = new User();
-
+ 
+        final UserAccount user = new UserAccount();        
+        
+        if(accountDto.getPassword() != null){
+            user.setEncryptedPassword(encryptionService.encryptString(accountDto.getPassword()));
+        }        
+                
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
-        user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
-        user.setUsing2FA(accountDto.isUsing2FA());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
-        return repository.save(user);
+        user.setSecret("");
+        user.setDeviceId("");
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(false);  //must be activated by email response
+        user.setCreateDate(new Date());
+        
+        return userRepository.save(user);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public User getUser(final String verificationToken) {
-        final UserVerificationToken token = tokenRepository.findByToken(verificationToken);
+    public UserAccount getUser(final String userVerificationToken) {
+        final UserVerificationToken token = tokenRepository.findByToken(userVerificationToken);
         if (token != null) {
             return token.getUser();
         }
         return null;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public UserVerificationToken getVerificationToken(final String VerificationToken) {
         return tokenRepository.findByToken(VerificationToken);
     }
-
-    @Override
-    public void saveRegisteredUser(final User user) {
-        repository.save(user);
+    
+    @Transactional
+    public UserAccount saveOrUpdate(UserAccount domainObject) {
+        return userRepository.save(domainObject);
     }
 
+    @Transactional
     @Override
-    public void deleteUser(final User user) {
-        final UserVerificationToken userVerificationToken = tokenRepository.findByUser(user);
+    public void deleteUser(final UserAccount user) {
+        final UserVerificationToken verificationToken = tokenRepository.findByUser(user);
 
-        if (userVerificationToken != null) {
-            tokenRepository.delete(userVerificationToken);
+        if (verificationToken != null) {
+            tokenRepository.delete(verificationToken);
         }
 
         final UserPasswordResetToken passwordToken = passwordTokenRepository.findByUser(user);
@@ -135,177 +139,160 @@ public class UserServiceImpl implements IUserService
             passwordTokenRepository.delete(passwordToken);
         }
 
-        repository.delete(user);
+        userRepository.delete(user.getId());
+    }
+    
+    public String generateTokenValue(){
+    	final String token = UUID.randomUUID().toString();
+    	return token;
     }
 
+    @Transactional
     @Override
-    public void createVerificationTokenForUser(final User user, final String token) {
+    public void createVerificationTokenForUser(final UserAccount user, final String token) {
         final UserVerificationToken myToken = new UserVerificationToken(token, user);
         tokenRepository.save(myToken);
     }
 
+    @Transactional
     @Override
     public UserVerificationToken generateNewVerificationToken(final String existingVerificationToken) {
-        UserVerificationToken vToken = tokenRepository.findByToken(existingVerificationToken);
-        vToken.updateToken(UUID.randomUUID().toString());
+    	UserVerificationToken vToken = tokenRepository.findByToken(existingVerificationToken);
+        vToken.updateToken(generateTokenValue());
         vToken = tokenRepository.save(vToken);
         return vToken;
     }
-
+    
+    @Transactional
     @Override
-    public void createPasswordResetTokenForUser(final User user, final String token) {
+    public void createPasswordResetTokenForUser(final UserAccount user, final String token) {
         final UserPasswordResetToken myToken = new UserPasswordResetToken(token, user);
         passwordTokenRepository.save(myToken);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public User findUserByEmail(final String email) {
-        return repository.findByEmail(email);
+    public UserAccount findUserByEmail(final String email) {
+    	
+        return userRepository.findByEmail(email);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public UserPasswordResetToken getPasswordResetToken(final String token) {
         return passwordTokenRepository.findByToken(token);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public User getUserByPasswordResetToken(final String token) {
+    public UserAccount getUserByPasswordResetToken(final String token) {
         return passwordTokenRepository.findByToken(token).getUser();
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public User getUserByID(final long id) {
-        return repository.findOne(id);
+    public UserAccount getUserByID(final long id) {
+        return userRepository.findOne(id);
+    }
+
+    @Transactional
+    @Override
+    public void changeUserPassword(final UserAccount user, final String password) {
+        user.setEncryptedPassword(encryptionService.encryptString(password));
+        userRepository.save(user);
     }
 
     @Override
-    public void changeUserPassword(final User user, final String password) {
-        user.setPassword(passwordEncoder.encode(password));
-        repository.save(user);
+    public boolean checkIfValidOldPassword(final UserAccount user, final String oldPassword) {
+        return passwordEncoder.matches(oldPassword, user.getEncryptedPassword());
     }
 
-    @Override
-    public boolean checkIfValidOldPassword(final User user, final String oldPassword) {
-        return passwordEncoder.matches(oldPassword, user.getPassword());
-    }
-
+    
     @Override
     public String validateVerificationToken(String token) {
-        final UserVerificationToken userVerificationToken = tokenRepository.findByToken(token);
-        if (userVerificationToken == null) {
+        final UserVerificationToken verificationToken = tokenRepository.findByToken(token);
+        if (verificationToken == null) {
             return TOKEN_INVALID;
         }
 
-        final User user = userVerificationToken.getUser();
+        final UserAccount user = verificationToken.getUser();
         final Calendar cal = Calendar.getInstance();
-        if ((userVerificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            tokenRepository.delete(userVerificationToken);
+        if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+            tokenRepository.delete(verificationToken);
             return TOKEN_EXPIRED;
         }
 
         user.setEnabled(true);
         // tokenRepository.delete(verificationToken);
-        repository.save(user);
+        userRepository.save(user);
         return TOKEN_VALID;
     }
 
-    @Override
-    public String generateQRUrl(User user) throws UnsupportedEncodingException {
-        return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, user.getEmail(), user.getSecret(), APP_NAME), "UTF-8");
-    }
-
-    @Override
-    public User updateUser2FA(boolean use2FA) {
-        final Authentication curAuth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = (User) curAuth.getPrincipal();
-        currentUser.setUsing2FA(use2FA);
-        currentUser = repository.save(currentUser);
-        final Authentication auth = new UsernamePasswordAuthenticationToken(currentUser, currentUser.getPassword(), curAuth.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(auth);
-        return currentUser;
-    }
-
-    private boolean emailExist(final String email) {
-        return repository.findByEmail(email) != null;
-    }
-
-    @Override
-    public List<String> getUsersFromSessionRegistry() {
-        return sessionRegistry.getAllPrincipals().stream().filter((u) -> !sessionRegistry.getAllSessions(u, false).isEmpty()).map(Object::toString).collect(Collectors.toList());
-    }
-	
-	
-	public String serviceInstantiated(){
+    /* (non-Javadoc)
+	 * @see com.aexample.website.service.IUserService#serviceInstantiated()
+	 */
+	@Override
+	public String serviceInstantiated() {
+		
+		// TODO Auto-generated method stub
 		return "Created";
+	}
+
+	private boolean emailExist(final String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
+	/* (non-Javadoc)
+	 * @see com.aexample.website.service.IUserService#getUsersFromSessionRegistry()
+	 */
+	@Override
+	public List<String> getUsersFromSessionRegistry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.aexample.website.service.IJPAService#listAll()
+	 */
+	@Override
+	public List<?> listAll() {
+        List<UserAccount> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add); //fun with Java 8
+        return users;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.aexample.website.service.IJPAService#getById(java.lang.Integer)
+	 */
+	@Override
+	public UserAccount getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+        userRepository.delete(id);
 		
-	}	
-	
-	
-	
-	
-	
-	
-/* old user code hanging onto for now	
-	
-	
-	
-	private IUserDao iUserDao;
+	}
 
-		public IUserDao getUserDao()
-		{
-				return this.iUserDao;
-		}
-
-		public void setUserDao(IUserDao iUserDao)
-		{
-				this.iUserDao = iUserDao;
-		}
-
-		public Accounts isValidUser(String username, String password) throws SQLException
-		{
-				return iUserDao.isValidUser(username, password);
-		}
-
-		@Override
-		public Accounts findOne(Long id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Long create(Accounts resource) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Long update(Accounts resource) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Long getById(Long id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Long deleteById(Long id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Accounts getByLoginId(String loginId) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
+	/* (non-Javadoc)
+	 * @see com.aexample.website.service.IJPAService#delete(java.lang.Integer)
+	 */
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
 		
-		public String serviceInstantiated(){
-			return "Created";
-			
-		}
-*/
+	}
+
+	/* (non-Javadoc)
+	 * @see com.aexample.website.service.IUserService#saveRegisteredUser(com.aexample.persistence.model.UserAccount)
+	 */
+	@Override
+	public void saveRegisteredUser(UserAccount user) {
+		// TODO Auto-generated method stub
+		
+	}
 }

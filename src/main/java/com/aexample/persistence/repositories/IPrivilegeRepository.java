@@ -1,13 +1,31 @@
+/**
+ * 
+ */
 package com.aexample.persistence.repositories;
 
-import com.aexample.persistence.model.Privilege;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+/**
+ * @author Main Login
+ * $Rev$
+ * $Date$
+ *
+ */
+import com.aexample.persistence.model.Privilege;
 
 public interface IPrivilegeRepository extends JpaRepository<Privilege, Long> {
 
-    Privilege findByName(String name);
+	/* (non-Javadoc)
+	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privilege)
+	 */
+	//@Override
+	default void delete(Privilege privilege) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    void delete(Privilege privilege);
+	Privilege findByName(String name);
+
 
 }

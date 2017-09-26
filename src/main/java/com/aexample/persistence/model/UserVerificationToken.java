@@ -3,9 +3,18 @@ package com.aexample.persistence.model;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "userVerificationToken")
 public class UserVerificationToken {
 
     private static final int EXPIRATION = 60 * 24;
@@ -16,9 +25,9 @@ public class UserVerificationToken {
 
     private String token;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = UserAccount.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id", foreignKey = @ForeignKey(name = "FK_VERIFY_USER"))
-    private User user;
+    private UserAccount user;
 
     private Date expiryDate;
 
@@ -33,7 +42,7 @@ public class UserVerificationToken {
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
-    public UserVerificationToken(final String token, final User user) {
+    public UserVerificationToken(final String token, final UserAccount user) {
         super();
 
         this.token = token;
@@ -53,11 +62,11 @@ public class UserVerificationToken {
         this.token = token;
     }
 
-    public User getUser() {
+    public UserAccount getUser() {
         return user;
     }
 
-    public void setUser(final User user) {
+    public void setUser(final UserAccount user) {
         this.user = user;
     }
 
