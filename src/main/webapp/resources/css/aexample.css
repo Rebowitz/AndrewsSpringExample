@@ -18,6 +18,7 @@ w\idth: 99%;
 border: 0px solid #eee;
 margin-left: auto;
 margin-right: auto;
+margin-top: 50px;
 padding: 0;
 line-height: 1.5em;
 }
@@ -144,6 +145,18 @@ top:170px;
 	float:right;
 
 }
+#reg-table{
+	display:table;
+	border: 0px;
+	cellpadding: 5px;	
+	width: 100%;		
+}
+#reg-col-1{
+	width; 75px;
+}
+#reg-col-2{
+	width; 125px;
+}
 #css-row{
 	display:table-row;
 	width:100%;
@@ -216,6 +229,77 @@ top:170px;
 	text-decoration: none;
 	color: #008000;	
 }
+#password{
+	text-decoration: none;
+	color: #000000;
+}
+.pswd_info{
+/*    position:absolute;
+/*    bottom:-75px;
+    bottom: -115px\9; /* IE Specific */
+/*    right:55px;*/
+margin-left: auto;
+margin-right: auto;
+    width:250px;
+    padding:15px;
+    background:#fefefe;
+    font-size:.875em;
+    border-radius:5px;
+    box-shadow:0 1px 3px #ccc;
+    border:1px solid #ddd;
+}
+.pswd_info h4 {
+    margin:0 0 10px 0;
+    padding:0;
+    font-weight:normal;	
+}
+.pswd_info ul, li {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+.pswd_info::before {
+    content: "\25B2";
+    position:absolute;
+    top:-12px;
+    left:45%;
+    font-size:14px;
+    line-height:14px;
+    color:#ddd;
+    text-shadow:none;
+    display:block;
+}
+.pswd_info {
+    display:none;
+}
+.notvalid {
+    background:url(/website/resources/images/cross.png) no-repeat 0 50%;
+    padding-left:22px;
+    line-height:24px;
+    color:#ec3f41;
+}
+.isvalid {
+    background:url(/website/resources/images/tick.png) no-repeat 0 50%;
+    padding-left:22px;
+    line-height:24px;
+    color:#3a7d34;
+}
+.notverified{
+	color:#fff;
+	background: #ff0a00;	
+}
+.isverified{
+	padding: 5px;
+	text-transform: uppercase;
+	font-size: 110%;
+	text-align:center;
+	color:#fff;
+	background: #3a7d34;
+}
+ .valErrors {
+ 	margin: 0 0 0 30%;
+	color: red;
+ }
 /*
 .intro {
 float:left;
@@ -291,7 +375,7 @@ color: #fff;
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 100px;
+    height: 50px;
     width: 100%;
 	border-top: 3px solid #333;    
 }
@@ -368,13 +452,16 @@ border: 1px solid #90b905;
 margin: 5px 10px 10px 15px;
 padding: 5px;
 }
+.formdiv {
+padding: 5px;
+}
 		/* HEADING PROPERTIES */
 h1 {
 margin-left:10px;	
 width: 30%;
 font-size: 200%;
 letter-spacing: 5px;
-color:#FFFFFF;
+color:#000000;
 }
 h2 {
 font-size: 130%;
@@ -415,6 +502,42 @@ text-align:center;
 color:#fff;
 background: #662600;
 }
+form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+label, input, button {
+    /* in order to define widths */
+    display: inline-block;
+}
+
+label {
+    width: 30%;
+    /* positions the label text beside the input */
+    text-align: right;
+}
+
+label + input {
+    width: 30%;
+    /* large margin-right to force the next element to the new-line
+       and margin-left to create a gutter between the label and input */
+    margin: 0 0 0 4%;
+}
+
+/* only the submit button is matched by this selector,
+   but to be sure you could use an id or class for that button */
+input + input {
+    float: right;
+    margin: 0 0 0 4%;    
+}
+button + a {
+	margin: 10 0 0 60%;
+}
+.buttondiv {
+	margin: 0 0 0 60%;
+}
+
 #aboutlist{
 float:left;
 width: 100%;

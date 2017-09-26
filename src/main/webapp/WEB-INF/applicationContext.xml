@@ -13,7 +13,14 @@
                             http://www.springframework.org/schema/jee/spring-jee-3.2.xsd 
                             http://www.springframework.org/schema/tx
                             http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
-
+                            
+		<!-- implements aspect oriented programming using ASPECTJ JSR 303                             
+        <aop:aspectj-autoproxy />  
+        Now implemented via java annotation in AppConfig.java
+        
+        -->
+ 
+        
         <!--
                 This will automatically locate any and all property files you have
                 within your classpath, provided they fall under the META-INF
@@ -21,5 +28,6 @@
                 then be used within application context files in the form of
                 ${propertyKey}.
         -->
-        <context:property-placeholder location="classpath*:*.properties" />
+        
+        <context:property-placeholder location="classpath*:*.properties,classpath*:*.json,classpath*:*.html" />
 </beans>
