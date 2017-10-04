@@ -8,7 +8,9 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,9 +18,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.aexample.event.OnRegistrationCompleteEvent;
+import com.aexample.event.OnRegistrationNotConfirmedEvent;
 import com.aexample.persistence.repositories.IUserLoginAttemptsRepository;
+import com.aexample.persistence.repositories.IUserVerificationTokenRepository;
 import com.aexample.security.service.CustomSpringSecurityUserDetailsService;
 import com.aexample.security.service.UserLoginAttemptsServiceImpl;
+import com.aexample.website.exception.RegistrationNotCompletedException;
 
 /**
  * @author Main Login
@@ -35,7 +41,13 @@ public class LimitLoginAttemptsAuthenticationProvider extends DaoAuthenticationP
 	IUserLoginAttemptsRepository userLoginAttemptsRepository;
 	
 	@Autowired
+	IUserVerificationTokenRepository userVerificationTokenRepository;
+	
+	@Autowired
 	UserLoginAttemptsServiceImpl userLoginAttemptsServiceImpl;
+	
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;	
 	
 	CustomSpringSecurityUserDetailsService customSpringSecurityUserDetailsService;
     
@@ -91,6 +103,13 @@ public class LimitLoginAttemptsAuthenticationProvider extends DaoAuthenticationP
 		  if(!theUser.isAccountNonLocked()){
 			  logger.debug("Account is locked- throwing LockedException");
 			  throw new LockedException("User account is locked!");
+		  }
+		  
+  
+		  if(!theUser.isEnabled()){
+			  
+			  logger.debug("Account is not enabled - throwing NotConfirmedException");
+			  throw new DisabledException(theUser.getUsername());
 		  }
 
 		  userLoginAttemptsServiceImpl.clearFailedLoginAttempts(authentication.getName(), new Date());

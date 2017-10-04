@@ -13,19 +13,23 @@ import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.aexample.domain.AbstractDomainClass;
-
-
 @Entity
 @Table(name = "roles")
-public class Role extends AbstractDomainClass {
+public class Role {
 
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+    
+	private String name;
     
     @ManyToMany(mappedBy = "roles")  //this is the mapped name in the UserAccount class
     private Collection<UserAccount> users;
@@ -43,6 +47,14 @@ public class Role extends AbstractDomainClass {
         this.name = name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }    
+    
     public String getName() {
         return name;
     }

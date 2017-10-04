@@ -63,6 +63,10 @@ public interface IUserService{
 
 	void delete(Integer id);
 
-	List<?> listAll();    
+	List<?> listAll();
+
+	UserVerificationToken getPreviousToken(String verificationToken);
+	
+	UserVerificationToken findTokenByUser(UserAccount user);
 	
 }

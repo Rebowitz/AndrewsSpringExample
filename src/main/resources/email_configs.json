@@ -1,0 +1,47 @@
+[
+		{
+			"configname": "REGCONFIRM",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "WELCOME",
+			"filename": "welcome_email_template.html",
+			"fromaddress": "aexample@aexample.com",
+			"subject": "Welcome to AExample Spring Application",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "",
+			"tokenneeded": "false",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "RESENDREGTOKEN",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation-New Registration Token",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		},
+		{
+			"configname": "RESETPASSWORD",
+			"filename": "regconfirm_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": "true",			
+			"multipart": "true",
+			"mimetype":	"html"	
+		}				
+				
+]

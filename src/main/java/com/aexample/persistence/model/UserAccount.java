@@ -18,18 +18,16 @@ import javax.validation.constraints.NotNull;
 
 import org.jboss.aerogear.security.otp.api.Base32;
 
-import com.aexample.domain.AbstractDomainClass;
-
 
 @Entity
 @Table(name = "userAccount")
-public class UserAccount extends AbstractDomainClass implements Comparable<UserAccount>{
+public class UserAccount implements Comparable<UserAccount>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotNull
+	@NotNull
 	private String firstName;
 
     @NotNull    
@@ -70,8 +68,14 @@ public class UserAccount extends AbstractDomainClass implements Comparable<UserA
 
     private Date createDate;
     
-    private Integer failedLoginAttempts = 0;    
- 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
     public String getFirstName() {
         return firstName;
     }
@@ -207,13 +211,7 @@ public class UserAccount extends AbstractDomainClass implements Comparable<UserA
 		this.createDate = createDate;
 	}
 	 
-    public Integer getFailedLoginAttempts() {
-        return failedLoginAttempts;
-    }
- 
-    public void setFailedLoginAttempts(Integer failedLoginAttempts) {
-        this.failedLoginAttempts = failedLoginAttempts;
-    }
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -229,6 +227,7 @@ public class UserAccount extends AbstractDomainClass implements Comparable<UserA
 		result = prime * result + ((deviceId == null) ? 0 : deviceId.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((enabled == null) ? 0 : enabled.hashCode());
+		result = prime * result + ((encryptedPassword == null) ? 0 : encryptedPassword.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -285,6 +284,11 @@ public class UserAccount extends AbstractDomainClass implements Comparable<UserA
 				return false;
 		} else if (!enabled.equals(other.enabled))
 			return false;
+		if (encryptedPassword == null) {
+			if (other.encryptedPassword != null)
+				return false;
+		} else if (!encryptedPassword.equals(other.encryptedPassword))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -316,18 +320,6 @@ public class UserAccount extends AbstractDomainClass implements Comparable<UserA
 		} else if (!secret.equals(other.secret))
 			return false;
 		return true;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "UserAccount [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", secret=" + secret + ", roles=" + roles
-				+ ", deviceId=" + deviceId + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked="
-				+ accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled
-				+ ", createDate=" + createDate + "]";
 	}
 
 	//does not handle booleans or user Role collection

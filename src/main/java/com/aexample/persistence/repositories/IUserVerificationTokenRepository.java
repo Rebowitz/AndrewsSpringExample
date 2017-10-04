@@ -38,7 +38,9 @@ public interface IUserVerificationTokenRepository  extends JpaRepository<UserVer
 	public UserVerificationToken findByToken(String token);
 
 	public UserVerificationToken findByUser(UserAccount user);
-
+	
+    @Query("select t from UserVerificationToken t where t.previousToken = ?1")
+	public UserVerificationToken findByPreviousToken(String verificationToken);
 
 	public Stream<UserVerificationToken> findAllByExpiryDateLessThan(Date now);
 

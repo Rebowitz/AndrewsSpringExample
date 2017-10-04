@@ -17,10 +17,8 @@ import com.aexample.persistence.model.UserAccount;
  * $Date$
  *
  */
-
 @SuppressWarnings("serial")
-public class OnRegistrationCompleteEvent extends ApplicationEvent {
-
+public class OnResendRegistrationTokenEvent extends ApplicationEvent {
 	/*use of the annotation injection of the logger throws 
 	 * a null pointer exception in the ApplicationEvent Context  
 	 */
@@ -30,14 +28,14 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
     private final String appUrl;
     private final Locale locale;
     private final UserAccount user;
-
-    public OnRegistrationCompleteEvent(final UserAccount user, final Locale locale, final String appUrl) {
-        super(user);
+    
+	public OnResendRegistrationTokenEvent(final UserAccount user, final Locale locale, final String appUrl) {
+		super(user);
         this.user = user;
         this.locale = locale;
         this.appUrl = appUrl;
-    }
-
+		// TODO Auto-generated constructor stub
+	}
     //
 
     public String getAppUrl() {
@@ -51,5 +49,4 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
     public UserAccount getUser() {
         return user;
     }
-
-}
+}    

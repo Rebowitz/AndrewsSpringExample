@@ -19,6 +19,7 @@ import com.aexample.aop.rootcontext.PersistenceLoggingAspect;
  */
 @Configuration
 public class AspectBeansRootContextConfig {
+	//this is spring aspects 1.2 style
 	
 	@Bean(name="persistenceMethodNamePointcut")
 	public NameMatchMethodPointcut nameMatchMethodPointcut(){

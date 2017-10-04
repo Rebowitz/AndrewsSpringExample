@@ -119,9 +119,21 @@ public class UserServiceImpl implements IUserService
         return tokenRepository.findByToken(VerificationToken);
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public UserVerificationToken getPreviousToken(final String VerificationToken) {
+        return tokenRepository.findByPreviousToken(VerificationToken);
+    }    
+    
     @Transactional
     public UserAccount saveOrUpdate(UserAccount domainObject) {
         return userRepository.save(domainObject);
+    }
+    
+    @Transactional
+    public UserVerificationToken findTokenByUser(UserAccount user){
+    	final UserVerificationToken verificationToken = tokenRepository.findByUser(user);
+    	return verificationToken;
     }
 
     @Transactional
@@ -159,6 +171,7 @@ public class UserServiceImpl implements IUserService
     public UserVerificationToken generateNewVerificationToken(final String existingVerificationToken) {
     	UserVerificationToken vToken = tokenRepository.findByToken(existingVerificationToken);
         vToken.updateToken(generateTokenValue());
+        vToken.setPreviousToken(existingVerificationToken);
         vToken = tokenRepository.save(vToken);
         return vToken;
     }

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aexample.persistence.model.Privilege;
 import com.aexample.persistence.model.Role;
 import com.aexample.persistence.model.UserAccount;
+import com.aexample.persistence.repositories.IActivityLogRepository;
 import com.aexample.persistence.repositories.IPrivilegeRepository;
 import com.aexample.persistence.repositories.IRoleRepository;
 import com.aexample.persistence.repositories.IUserRepository;
@@ -49,7 +50,10 @@ public class InitialDataLoader implements
     private IPrivilegeRepository privilegeRepository;
   
 	@Autowired
-	private IEncryptionService encryptionService;	
+	private IEncryptionService encryptionService;
+	
+	@Autowired
+	private IActivityLogRepository activityLogRepository;
 	
     @Autowired
     public void setEncryptionService(IEncryptionService encryptionService) {
@@ -77,7 +81,8 @@ public class InitialDataLoader implements
 		String sql = "DELETE FROM user_roles WHERE 1";
 		String sql2 = "DELETE FROM userVerificationToken WHERE 1";
 		String sql3 = "DELETE FROM userAccount WHERE 1";
-		String sql4 = "DELETE FROM userLoginAttempts WHERE 1";		
+		String sql4 = "DELETE FROM userLoginAttempts WHERE 1";
+		String sql5 = "DELETE FROM activityLog WHERE 1";
     	try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -93,6 +98,10 @@ public class InitialDataLoader implements
 			ps.close();
 
 			ps = conn.prepareStatement(sql4);
+			ps.execute();
+			ps.close();
+
+			ps = conn.prepareStatement(sql5);
 			ps.execute();
 			ps.close();
 			

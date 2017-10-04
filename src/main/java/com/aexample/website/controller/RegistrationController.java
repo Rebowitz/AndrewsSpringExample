@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
@@ -31,6 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aexample.annotations.ILogger;
 import com.aexample.event.OnRegistrationCompleteEvent;
+import com.aexample.event.OnRegistrationConfirmEvent;
+import com.aexample.event.OnResendRegistrationTokenEvent;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserPasswordResetToken;
 import com.aexample.persistence.model.UserVerificationToken;
@@ -39,6 +42,17 @@ import com.aexample.website.dto.UserDto;
 import com.aexample.website.exception.RegistrationFailedException;
 import com.aexample.website.exception.UserAlreadyExistsException;
 import com.aexample.website.service.IUserService;
+
+/*
+ * In order to support AOP creation of activity log records
+ * each method must have an id and email populated in its declared fields.
+ * These fields are accessed via reflection and used to populated fields in
+ * the activity log records.  This is done to eliminate more dbase access requests
+ * to pull the same information multiple times.
+ * 
+ */
+
+
 
 @Controller
 public class RegistrationController {
@@ -62,6 +76,7 @@ public class RegistrationController {
 
     @Autowired
     private Environment env;
+    
     
     
  /*   @InitBinder
@@ -101,7 +116,7 @@ public class RegistrationController {
 		   
     	   try{
                //the event publisher sends registration confirmation email
-    		   //via com.aexample.listener.RegistrationListener
+    		   //via com.aexample.listener.OnRegistrationCompleteListener
     		   logger.debug("Triggering OnRegistrationCompleteEvent");
                eventPublisher.publishEvent(new OnRegistrationCompleteEvent
                  (registered, request.getLocale(), appUrl));
@@ -120,25 +135,33 @@ public class RegistrationController {
            return new ModelAndView("registration", "user", userDto);
        } 
        else {
+
+    	   
            return new ModelAndView("successRegister", "user", userDto);
        }
    }
 
  
-    @RequestMapping(value = "/user/registrationConfirm", method = RequestMethod.GET)
+    @SuppressWarnings("unused")
+	@RequestMapping(value = "/user/registrationConfirm", method = RequestMethod.GET)
     public String confirmRegistration(final HttpServletRequest request, final Model model, @RequestParam("token") final String token) {
         final Locale locale = request.getLocale();
+        StringBuffer appUrlBuff = request.getRequestURL();  //returns the URL up to the query ?
+        String appUrl = appUrlBuff.toString();        
 
         final UserVerificationToken verificationToken = userService.getVerificationToken(token);
         if (verificationToken == null) {
             final String message = messages.getMessage("auth.message.invalidToken", null, locale);
             model.addAttribute("message", message);
-            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+            return "redirect:/badRegistrationToken.html?lang=" + locale.getLanguage();
         }
 
         final UserAccount user = verificationToken.getUser();
         
-        if(user.getEnabled().booleanValue()){  //bypass checks and updating tokens-just return page
+       
+        if(user.getEnabled().booleanValue()){  
+        	//bypass checks and updating tokens-just return page
+        	//this handles a second confirmation attempt on the same token
             return "registrationCompleted";         	
         }
         final Calendar cal = Calendar.getInstance();
@@ -146,34 +169,39 @@ public class RegistrationController {
             model.addAttribute("message", messages.getMessage("auth.message.expired", null, locale));
             model.addAttribute("expired", true);
             model.addAttribute("token", token);
-            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+            return "redirect:/badRegistrationToken.html?lang=" + locale.getLanguage();
         }
         
         user.setEnabled(Boolean.TRUE);
-   
         userService.saveOrUpdate(user);
+   
+		   logger.debug("Triggering OnRegistrationConfirmEvent");
+           eventPublisher.publishEvent(new OnRegistrationConfirmEvent
+             (user, request.getLocale(), appUrl));
+        
+        
+        
         return "registrationCompleted";       
     }
    
     @RequestMapping(value = "/user/resendRegistrationToken", method = RequestMethod.GET)
     public String resendRegistrationToken(final HttpServletRequest request, final Model model, @RequestParam("token") final String existingToken) {
         final Locale locale = request.getLocale();
+        StringBuffer appUrlBuff = request.getRequestURL();  //returns the URL up to the query ?
+        String appUrl = appUrlBuff.toString();        
+        
+      //replace user token with new token in database
         final UserVerificationToken newToken = userService.generateNewVerificationToken(existingToken);
         final UserAccount user = userService.getUser(newToken.getToken());
-        try {
-            final String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-            final SimpleMailMessage email = constructResetVerificationTokenEmail(appUrl, request.getLocale(), newToken, user);
-            mailSender.send(email);
-        } catch (final MailAuthenticationException e) {
-            logger.debug("MailAuthenticationException", e);
-            return "redirect:/emailError.html?lang=" + locale.getLanguage();
-        } catch (final Exception e) {
-            logger.debug(e.getLocalizedMessage(), e);
-            model.addAttribute("message", e.getLocalizedMessage());
-            return "redirect:/login.html?lang=" + locale.getLanguage();
-        }
+
+        //publish event for new reg token requested
+        
+		   logger.debug("Triggering OnRegistrationConfirmEvent");
+           eventPublisher.publishEvent(new OnResendRegistrationTokenEvent
+             (user, request.getLocale(), appUrl));           
+  
         model.addAttribute("message", messages.getMessage("message.resendToken", null, locale));
-        return "redirect:/login.html?lang=" + locale.getLanguage();
+        return "redirect:/resendRegistrationToken?lang=" + locale.getLanguage();
     }
 
     @RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)

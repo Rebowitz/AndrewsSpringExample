@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.aexample.listener.RegistrationListener;
+import com.aexample.listener.OnRegistrationCompleteListener;
 
 /**
  * @author Main Login
@@ -20,8 +20,8 @@ import com.aexample.listener.RegistrationListener;
 public class EventListenerConfig {
 	
 	@Bean
-	public RegistrationListener registrationListener(){
-		return new RegistrationListener();
+	public OnRegistrationCompleteListener onRegistrationCompleteListener(){
+		return new OnRegistrationCompleteListener();
 	}
 	
 

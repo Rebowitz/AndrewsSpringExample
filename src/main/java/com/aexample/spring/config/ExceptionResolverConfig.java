@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionRes
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
-import com.aexample.website.exception.CustomizedException1;
+import com.aexample.website.exception.RegistrationNotCompletedException;
 
 /**
  * @author Main Login
@@ -33,7 +33,7 @@ public class ExceptionResolverConfig {
 		
 		// Setting customized exception mappings
 		Properties p = new Properties();
-		p.put(CustomizedException1.class.getName(), "Errors/Exception1");
+		p.put(RegistrationNotCompletedException.class.getName(), "Errors/Exception1");
 		result.setExceptionMappings(p);
 		
 		// Un-mapped exceptions will be directed to here
