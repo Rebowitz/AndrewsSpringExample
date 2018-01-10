@@ -99,7 +99,7 @@
 			</div>
 		
 			<div class="login-help">
-				<a href="@{/resetPassword.html}">${message.resetPassword}</a>
+				<a href="/resetPassword.html">Reset Password</a>
 			</div>
 		</div>
 

@@ -1,6 +1,8 @@
 package com.aexample.website.controller;
 
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +33,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aexample.annotations.ILogger;
-import com.aexample.event.OnRegistrationCompleteEvent;
+import com.aexample.event.OnRegistrationEnteredEvent;
 import com.aexample.event.OnRegistrationConfirmEvent;
 import com.aexample.event.OnResendRegistrationTokenEvent;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserPasswordResetToken;
 import com.aexample.persistence.model.UserVerificationToken;
 import com.aexample.security.service.RegistrationUserDetailsService;
+import com.aexample.website.dto.EmailOnlyDto;
+import com.aexample.website.dto.PasswordDto;
 import com.aexample.website.dto.UserDto;
 import com.aexample.website.exception.RegistrationFailedException;
 import com.aexample.website.exception.UserAlreadyExistsException;
@@ -76,6 +80,7 @@ public class RegistrationController {
 
     @Autowired
     private Environment env;
+
     
     
     
@@ -99,104 +104,140 @@ public class RegistrationController {
     }
 
    
-   @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
-   public ModelAndView registerUserAccount(@ModelAttribute("userDto") @Valid final UserDto userDto, BindingResult result, final HttpServletRequest request, final HttpServletResponse response) {
-       logger.debug("Registering user account with information: {}", userDto);
-       UserAccount registered = new UserAccount();
-       final Locale locale = request.getLocale();
-       StringBuffer appUrlBuff = request.getRequestURL();  //returns the URL up to the query ?
-       String appUrl = appUrlBuff.toString();
-       
-       //validation passed, now save the record
-       //returning UserAccountExists exception if account exists
-       //exceptionhandler is at end of controller code
-       if (!result.hasErrors()) {
-    	   
-		   registered = userService.registerNewUserAccount(userDto);
-		   
-    	   try{
-               //the event publisher sends registration confirmation email
-    		   //via com.aexample.listener.OnRegistrationCompleteListener
-    		   logger.debug("Triggering OnRegistrationCompleteEvent");
-               eventPublisher.publishEvent(new OnRegistrationCompleteEvent
-                 (registered, request.getLocale(), appUrl));
-           }catch(Exception me) {
-        	   logger.debug("Email error exception--" + me);
-               return new ModelAndView("emailError", "user", userDto);
-           }
-       }
-       if (registered == null) {
-    	   //registerNewUserAccount routine throws the UserAlreadyExistsException
-    	   //so if processing reaches this point with registered being null
-    	   //there is a system outage!
-           throw new RegistrationFailedException();
-       }
-       if (result.hasErrors()) {
-           return new ModelAndView("registration", "user", userDto);
-       } 
-       else {
+	@RequestMapping(value = "/user/registration", method = RequestMethod.POST)
+	public ModelAndView registerUserAccount(@ModelAttribute("userDto") @Valid final UserDto userDto,
+			BindingResult result, final HttpServletRequest request, final HttpServletResponse response) {
+		logger.debug("Registering user account with information: {}", userDto);
+		UserAccount registered = new UserAccount();
+		final Locale locale = request.getLocale();
+		StringBuffer appUrlBuff = request.getRequestURL(); // returns the URL up
+															// to the query ?
+		String appUrl = appUrlBuff.toString();
 
-    	   
-           return new ModelAndView("successRegister", "user", userDto);
-       }
-   }
+		// validation passed, now save the record
+		// returning UserAccountExists exception if account exists
+		// exceptionhandler is at end of controller code
+		if (!result.hasErrors()) {
+
+			registered = userService.registerNewUserAccount(userDto);
+
+			try {
+				// the event publisher sends registration confirmation email
+				// via com.aexample.listener.OnRegistrationEnteredListener
+				logger.debug("Triggering OnRegistrationEnteredEvent");
+				eventPublisher.publishEvent(new OnRegistrationEnteredEvent(registered, request.getLocale(), appUrl));
+			} catch (Exception me) {
+				logger.debug("Email error exception--" + me);
+				return new ModelAndView("emailError", "user", userDto);
+			}
+		}
+		if (registered == null) {
+			// registerNewUserAccount routine throws the
+			// UserAlreadyExistsException
+			// so if processing reaches this point with registered being null
+			// there is a system outage!
+			throw new RegistrationFailedException();
+		}
+		if (result.hasErrors()) {
+			return new ModelAndView("registration", "user", userDto);
+		} else {
+
+			return new ModelAndView("successRegister", "user", userDto);
+		}
+	}
 
  
-    @SuppressWarnings("unused")
 	@RequestMapping(value = "/user/registrationConfirm", method = RequestMethod.GET)
-    public String confirmRegistration(final HttpServletRequest request, final Model model, @RequestParam("token") final String token) {
+	public String confirmRegistration(final HttpServletRequest request, final Model model,
+			@RequestParam("token") final String token) {
+		final Locale locale = request.getLocale();
+		StringBuffer appUrlBuff = request.getRequestURL(); // returns the URL up
+															// to the query ?
+		String appUrl = appUrlBuff.toString();
+
+		final UserVerificationToken verificationToken = userService.getVerificationToken(token);
+		if (verificationToken == null) {
+			final String message = messages.getMessage("auth.message.invalidToken", null, locale);
+			model.addAttribute("message", message);
+			return "redirect:/badRegistrationToken?lang=" + locale.getLanguage();
+		}
+
+		final UserAccount user = verificationToken.getUser();
+
+		if (user.getEnabled().booleanValue()) {
+			// bypass checks and updating tokens-just return page
+			// this handles a second confirmation attempt on the same token
+			return "registrationCompleted";
+		}
+		final Calendar cal = Calendar.getInstance();
+		if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+			model.addAttribute("message", messages.getMessage("auth.message.expired", null, locale));
+			model.addAttribute("expired", true);
+			model.addAttribute("token", token);
+			return "redirect:/badRegistrationToken?lang=" + locale.getLanguage();
+		}
+
+		user.setEnabled(Boolean.TRUE);
+		userService.saveOrUpdate(user);
+
+		logger.debug("Triggering OnRegistrationConfirmEvent");
+		eventPublisher.publishEvent(new OnRegistrationConfirmEvent(user, request.getLocale(), appUrl));
+
+		return "registrationCompleted";
+	}
+   
+    @RequestMapping(value = "/user/resendRegistrationToken", method = RequestMethod.POST)
+    public String resendRegistrationToken(@ModelAttribute("emailOnlyDto") @Valid final EmailOnlyDto emailOnlyDto,
+			BindingResult result, final HttpServletRequest request, final HttpServletResponse response){
+    		
         final Locale locale = request.getLocale();
         StringBuffer appUrlBuff = request.getRequestURL();  //returns the URL up to the query ?
         String appUrl = appUrlBuff.toString();        
-
-        final UserVerificationToken verificationToken = userService.getVerificationToken(token);
-        if (verificationToken == null) {
-            final String message = messages.getMessage("auth.message.invalidToken", null, locale);
-            model.addAttribute("message", message);
-            return "redirect:/badRegistrationToken.html?lang=" + locale.getLanguage();
-        }
-
-        final UserAccount user = verificationToken.getUser();
         
-       
-        if(user.getEnabled().booleanValue()){  
-        	//bypass checks and updating tokens-just return page
-        	//this handles a second confirmation attempt on the same token
-            return "registrationCompleted";         	
-        }
-        final Calendar cal = Calendar.getInstance();
-        if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            model.addAttribute("message", messages.getMessage("auth.message.expired", null, locale));
-            model.addAttribute("expired", true);
-            model.addAttribute("token", token);
-            return "redirect:/badRegistrationToken.html?lang=" + locale.getLanguage();
-        }
+        //look up token in database
+        //if exists and not expired, send regconfirm email
+        //if not, generate token and send regconfirm email
+        //if email not found, throw error
+        //else error out
         
-        user.setEnabled(Boolean.TRUE);
-        userService.saveOrUpdate(user);
-   
-		   logger.debug("Triggering OnRegistrationConfirmEvent");
-           eventPublisher.publishEvent(new OnRegistrationConfirmEvent
-             (user, request.getLocale(), appUrl));
+        String emailAddy = emailOnlyDto.getEmail();
         
-        
-        
-        return "registrationCompleted";       
-    }
-   
-    @RequestMapping(value = "/user/resendRegistrationToken", method = RequestMethod.GET)
-    public String resendRegistrationToken(final HttpServletRequest request, final Model model, @RequestParam("token") final String existingToken) {
-        final Locale locale = request.getLocale();
-        StringBuffer appUrlBuff = request.getRequestURL();  //returns the URL up to the query ?
-        String appUrl = appUrlBuff.toString();        
-        
+		UserAccount aUser = userService.findUserByEmail(emailAddy);
+		
+		if(aUser == null){
+			//set error message
+			//throw previouis page
+			
+			
+		}
+		
+		
+		//check for user not found here and throw error
+		//TODO: check for user not found here and throw error
+	
+		//if the token is still valid or if a new token must be generated
+		//it is handled by the CustomHTMLMailer which is called by
+		//the OnResendRegistrationTokenListener triggered by the below event call
+	
+		 logger.debug("Triggering OnResendRegistrationTokenEvent");
+         eventPublisher.publishEvent(new OnResendRegistrationTokenEvent
+             (aUser, request.getLocale(), appUrl));           
+  
+//        model.addAttribute("message", messages.getMessage("message.resendToken", null, locale));
+        return "registrationTokenResent";		
+		
+    }	
+		
+		
+/*		
+    
       //replace user token with new token in database
         final UserVerificationToken newToken = userService.generateNewVerificationToken(existingToken);
         final UserAccount user = userService.getUser(newToken.getToken());
 
         //publish event for new reg token requested
         
-		   logger.debug("Triggering OnRegistrationConfirmEvent");
+		   logger.debug("Triggering OnResendRegistrationTokenEvent");
            eventPublisher.publishEvent(new OnResendRegistrationTokenEvent
              (user, request.getLocale(), appUrl));           
   
@@ -204,12 +245,23 @@ public class RegistrationController {
         return "redirect:/resendRegistrationToken?lang=" + locale.getLanguage();
     }
 
+*/
+
+    @RequestMapping(value = "/user/resetPassword", method = RequestMethod.GET)
+    public String showResetPasswordForm(HttpServletRequest request, Model model) {
+    	PasswordDto passwordDto = new PasswordDto();
+        model.addAttribute("passwordDto", passwordDto);
+        logger.debug("Serving reset password page");
+        return "redirect:/resentPassword?lang=" + request.getLocale().getLanguage();
+    }
+    
+
     @RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)
     public String resetPassword(final HttpServletRequest request, final Model model, @RequestParam("email") final String userEmail) {
         final UserAccount user = userService.findUserByEmail(userEmail);
         if (user == null) {
             model.addAttribute("message", messages.getMessage("message.userNotFound", null, request.getLocale()));
-            return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+            return "redirect:/login?lang=" + request.getLocale().getLanguage();
         }
 
         final String token = userService.generateTokenValue();
@@ -220,14 +272,14 @@ public class RegistrationController {
             mailSender.send(email);
         } catch (final MailAuthenticationException e) {
             logger.debug("MailAuthenticationException", e);
-            return "redirect:/emailError.html?lang=" + request.getLocale().getLanguage();
+            return "redirect:/emailError?lang=" + request.getLocale().getLanguage();
         } catch (final Exception e) {
             logger.debug(e.getLocalizedMessage(), e);
             model.addAttribute("message", e.getLocalizedMessage());
-            return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+            return "redirect:/login?lang=" + request.getLocale().getLanguage();
         }
         model.addAttribute("message", messages.getMessage("message.resetPasswordEmail", null, request.getLocale()));
-        return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+        return "redirect:/login?lang=" + request.getLocale().getLanguage();
     }
 
     @RequestMapping(value = "/user/changePassword", method = RequestMethod.GET)
@@ -239,19 +291,19 @@ public class RegistrationController {
         if ((passToken == null) || (user.getId() != id)) {
             final String message = messages.getMessage("auth.message.invalidToken", null, locale);
             model.addAttribute("message", message);
-            return "redirect:/login.html?lang=" + locale.getLanguage();
+            return "redirect:/login?lang=" + locale.getLanguage();
         }
 
         final Calendar cal = Calendar.getInstance();
         if ((passToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             model.addAttribute("message", messages.getMessage("auth.message.expired", null, locale));
-            return "redirect:/login.html?lang=" + locale.getLanguage();
+            return "redirect:/login?lang=" + locale.getLanguage();
         }
 
         final Authentication auth = new UsernamePasswordAuthenticationToken(user, null, userDetailsService.loadUserByUsername(user.getEmail()).getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        return "redirect:/updatePassword.html?lang=" + locale.getLanguage();
+        return "redirect:/updatePassword?lang=" + locale.getLanguage();
     }
 
     @RequestMapping(value = "/user/savePassword", method = RequestMethod.POST)
@@ -262,7 +314,7 @@ public class RegistrationController {
         final UserAccount user = (UserAccount) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userService.changeUserPassword(user, password);
         model.addAttribute("message", messages.getMessage("message.resetPasswordSuc", null, locale));
-        return "redirect:/login.html?lang=" + locale;
+        return "redirect:/login?lang=" + locale;
     }
 
     // NON-API

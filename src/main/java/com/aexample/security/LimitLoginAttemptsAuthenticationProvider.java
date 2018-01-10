@@ -12,13 +12,15 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.aexample.event.OnRegistrationCompleteEvent;
+import com.aexample.event.OnRegistrationEnteredEvent;
 import com.aexample.event.OnRegistrationNotConfirmedEvent;
 import com.aexample.persistence.repositories.IUserLoginAttemptsRepository;
 import com.aexample.persistence.repositories.IUserVerificationTokenRepository;
@@ -84,10 +86,17 @@ public class LimitLoginAttemptsAuthenticationProvider extends DaoAuthenticationP
 		//need to encode password for comparison attempt
 		
 		
-		UserDetails theUser = super.getUserDetailsService().loadUserByUsername(username);
+		UserDetails theUser = null;
+		try{
+			theUser = super.getUserDetailsService().loadUserByUsername(username);
+		}catch(Exception unfe){
+//		}catch(UsernameNotFoundException unfe){			
+			logger.debug("THROWING UsernameNotFoundException!!!");
+			throw new AuthenticationCredentialsNotFoundException("User name not found");
+		}
 		//UserDetails theUser = customSpringSecurityUserDetailsService.loadUserByUsername(username);  //this is an email address
 		
-			  
+		
 			  boolean passwordsEqual = encryptionService.checkPassword(password, theUser.getPassword());
 		
 			  //get number of login failures for test 

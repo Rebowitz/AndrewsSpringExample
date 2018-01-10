@@ -43,13 +43,29 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(final HttpSecurity http) throws Exception {
 		// @formatter:off
 		// csrf enabled by default
+		// each matcher considered in the order they are declared
 		http.authorizeRequests()
-				.antMatchers("/login*", "/logout*", "/signin/**", "/signup/**", "/user/registration*",
-						"/expiredAccount*", "/badUser*", "/user/resendRegistrationToken*", "/forgetPassword*",
-						"/user/resetPassword*", "/user/changePassword*", "/emailError*", "/successRegister*",
-						"/registrationCompleted*")
-				.permitAll().antMatchers("/admin/**").access("hasRole('ADMIN')").antMatchers("/invalidSession*")
-				.anonymous().antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*")
+				.antMatchers("/login*",
+						"/logout*",
+						"/signin/**",
+						"/signup/**",
+						"/user/registration*",
+						"/expiredAccount*",
+						"/badUser*",
+						"/user/resendRegistrationToken*",
+						"/forgotPassword*",
+						"/user/resetPassword*",
+						"/user/changePassword*",
+						"/emailError*",
+						"/successRegister*",
+						"/registrationCompleted*",
+						"/invalidSession*")
+				.permitAll()
+				.antMatchers("/admin/**").access("hasRole('ADMIN')")
+				//.antMatchers("/invalidSession*").anonymous()
+					.antMatchers("/user/updatePassword*",
+							"/user/savePassword*",
+							"/updatePassword*")
 				.hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
 				// .anyRequest().hasAuthority("READ_PRIVILEGE")
 				.anyRequest().authenticated()
@@ -60,11 +76,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.defaultSuccessUrl("/dashboard.html")
 					//using .failureUrl will override using the failurehandler configured below
 					//we also set the failureUrl in the handler
-					.failureUrl("/login?error=true")  
+					//.failureUrl("/login?error=true") 
 					.usernameParameter("email")
 					.passwordParameter("password")
 		//			.successHandler(siteAuthenticationSuccessHandler())
-		//			.failureHandler(authenticationFailureHandler())
+					.failureHandler(authenticationFailureHandler())
 					//.authenticationDetailsSource(authenticationDetailsSource())
 				
 				.permitAll()
@@ -85,7 +101,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 					.sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-					.invalidSessionUrl("/invalidSession.html")
+//					.invalidSessionUrl("/invalidSession.html")
+					.sessionFixation().migrateSession()
 					.maximumSessions(1);
 		// @formatter:on
 

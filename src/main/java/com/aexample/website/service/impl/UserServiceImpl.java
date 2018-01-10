@@ -27,6 +27,7 @@ import com.aexample.persistence.repositories.IUserVerificationTokenRepository;
 import com.aexample.security.IEncryptionService;
 import com.aexample.website.dto.UserDto;
 import com.aexample.website.exception.UserAlreadyExistsException;
+import com.aexample.website.exception.UsernameNotFoundException;
 import com.aexample.website.service.IUserService;
 
 @Service
@@ -185,9 +186,16 @@ public class UserServiceImpl implements IUserService
 
     @Transactional(readOnly = true)
     @Override
-    public UserAccount findUserByEmail(final String email) {
+    public UserAccount findUserByEmail(final String email) throws UsernameNotFoundException{
+    	//the email is the username in this system, so that is the exception that is thrown
+    	//if we do not find the email in the database.
+    	UserAccount userAcct = userRepository.findByEmail(email);
     	
-        return userRepository.findByEmail(email);
+    	if(userAcct == null){
+    		throw new UsernameNotFoundException("Email not found");
+    	} 
+    	
+        return userAcct;
     }
 
     @Transactional(readOnly = true)
@@ -235,7 +243,7 @@ public class UserServiceImpl implements IUserService
             return TOKEN_EXPIRED;
         }
 
-        user.setEnabled(true);
+       // user.setEnabled(true);
         // tokenRepository.delete(verificationToken);
         userRepository.save(user);
         return TOKEN_VALID;

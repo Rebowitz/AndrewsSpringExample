@@ -40,8 +40,10 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     	logger.debug("Entered onAuthenticationFailure");
     	
     	setDefaultFailureUrl("/login?error=true");
+    	
+    	super.onAuthenticationFailure(request, response, exception);
 
-        String email = request.getParameter("email");
+ /*       String email = request.getParameter("email");
   //      String notifier = null;
         
         final Locale locale = localeResolver.resolveLocale(request);
@@ -54,10 +56,21 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
             errorMessage = messageSource.getMessage("auth.message.expired", null, locale);
         } else if (exception.getMessage().equalsIgnoreCase("blocked")) {
             errorMessage = messageSource.getMessage("auth.message.blocked", null, locale);
+        }else if (exception.getMessage().equalsIgnoreCase("User name not found")){
+        	errorMessage = messageSource.getMessage("auth.message.usernotfound", null, locale);
         }else{
         	logger.debug("onAuthenticationFailureHandler calling userUpdateFailedLoginAttempts");
         	userLoginAttemptsServiceImpl.userUpdateFailedLoginAttempts(email, new Date());
         }
-        request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);
+*/
+
+        request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, exception);
+   //     request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);
+   //     getRedirectStrategy().sendRedirect(request, response, "/login");        
+        // write your custom code here
+        
+        //response.sendRedirect("/loginFailed");
+		//redirectStrategy.sendRedirect(request, response, badCredentialsUrl);
+        
     }
 }

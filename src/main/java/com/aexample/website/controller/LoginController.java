@@ -3,6 +3,7 @@ package com.aexample.website.controller;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -11,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aexample.annotations.ILogger;
+import com.aexample.event.OnRegistrationEnteredEvent;
 import com.aexample.event.OnRegistrationNotConfirmedEvent;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.website.exception.RegistrationNotCompletedException;
@@ -40,6 +44,9 @@ import com.aexample.website.service.IUserService;
 	    
 	    @Autowired
 	    private IUserService userService;
+	    
+	    @Autowired
+	    private MessageSource messages;
 		
 //	    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 		private static @ILogger Logger logger;
@@ -74,6 +81,7 @@ import com.aexample.website.service.IUserService;
 		/*
 		 * Spring security configuration will redirect a sucessful login to the dashboard page. 
 		 * Therefore there is no /login POST RequestMapping
+		 * Errors will be returned here as apart of the RequestParam mapping
 		 */		
 		
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -84,10 +92,10 @@ import com.aexample.website.service.IUserService;
 			/////////////////
 			//to be commented or deleted after debugging
 			logger.debug("Printing out http request parameters");
-			Map requestMap = request.getParameterMap();
+			Map<String,String[]> requestMap = request.getParameterMap();
 			
-		    Set s = requestMap.entrySet();
-		       Iterator it = s.iterator();
+		    Set<Entry<String, String[]>> s = requestMap.entrySet();
+		       Iterator<Entry<String, String[]>> it = s.iterator();
 		       
 	            while(it.hasNext()){
 	 
@@ -132,7 +140,7 @@ import com.aexample.website.service.IUserService;
 					//hijacked exception error message and used it to pass userid back to this
 					//method.
 					
-					UserAccount aUser = userService.findUserByEmail(emailAddy);
+					UserAccount aUser = userService.findUserByEmail(emailAddy);								
 					model.setViewName("resendRegistrationToken");
 					 logger.debug("Triggering OnRegistrationNotConfirmedEvent");
 					 
@@ -162,8 +170,32 @@ import com.aexample.website.service.IUserService;
 		private Object getErrorMessage(HttpServletRequest request, String key) {
 			Exception exception =
 	                   (Exception) request.getSession().getAttribute(key);
-
+			final Locale locale = request.getLocale();
 			String error = "";
+			
+			
+			 /*       String email = request.getParameter("email");
+			  //      String notifier = null;
+			        
+			        final Locale locale = localeResolver.resolveLocale(request);
+
+			        String errorMessage = messageSource.getMessage("message.badCredentials", null, locale);
+
+			        if (exception.getMessage().equalsIgnoreCase("User is disabled")) {
+			            errorMessage = messageSource.getMessage("auth.message.disabled", null, locale);
+			        } else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
+			            errorMessage = messageSource.getMessage("auth.message.expired", null, locale);
+			        } else if (exception.getMessage().equalsIgnoreCase("blocked")) {
+			            errorMessage = messageSource.getMessage("auth.message.blocked", null, locale);
+			        }else if (exception.getMessage().equalsIgnoreCase("User name not found")){
+			        	errorMessage = messageSource.getMessage("auth.message.usernotfound", null, locale);
+			        }else{
+			        	logger.debug("onAuthenticationFailureHandler calling userUpdateFailedLoginAttempts");
+			        	userLoginAttemptsServiceImpl.userUpdateFailedLoginAttempts(email, new Date());
+			        }
+			*/			
+			
+			
 			if (exception instanceof BadCredentialsException) {
 				error = "Invalid username or password!";
 			}else if(exception instanceof LockedException) {

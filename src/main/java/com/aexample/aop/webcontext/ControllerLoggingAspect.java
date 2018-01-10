@@ -35,11 +35,23 @@ public class ControllerLoggingAspect {
 	}
 
 	@After("logAfterRegistrationController()")
-	public void logAfterRegistrationControllerAdvice(JoinPoint joinPoint){
+	public void logAfterRegistrationController(JoinPoint joinPoint){
 		logger.debug("logAfter RegistrationController");
 	    System.out.println(joinPoint.getSignature().getName()+" is completed! from logAfter");
 	}
 
+	@Before("logBeforeLoginController()")
+	public void logBeforeLoginControllerAdvice(JoinPoint joinPoint){
+		logger.debug("logBefore LoginController");
+		System.out.println(joinPoint.getSignature().getName()+" is started! from logBefore");
+	}
+
+	@After("logAfterLoginController()")
+	public void logAfterLoginControllerAdvice(JoinPoint joinPoint){
+		logger.debug("logAfter LoginController");
+	    System.out.println(joinPoint.getSignature().getName()+" is completed! from logAfter");
+	}	
+	
 /*	@Before("allControllerMethodsPointcut()")
 	public void allControllerMethodsAdvice() {
 		logger.debug("Before executing controller method");
@@ -53,15 +65,24 @@ public class ControllerLoggingAspect {
 	@Pointcut("within(com.aexample.website.controller.*.*)")
 	public void allControllerMethodsPointcut() {
 
+
+another definition
+@Pointcut("execution(* com.aexample.website.controller.*.*(..))")
+
 	}
 */
 	
-	@Pointcut("execution(* com.aexample.website.controller.*.*(..))")
+	@Pointcut("execution(* com.aexample.website.controller.RegistrationController.*(..))")
 	public void logBeforeRegistrationController(){}
 	
-	@Pointcut("execution(* com.aexample.website.controller.*.*(..))")
+	@Pointcut("execution(* com.aexample.website.controller.RegistrationController.*(..))")
 	public void logAfterRegistrationController(){}
 	
+	@Pointcut("execution(* com.aexample.website.controller.LoginController.*(..))")
+	public void logBeforeLoginController(){}
+	
+	@Pointcut("execution(* com.aexample.website.controller.LoginController.*(..))")
+	public void logAfterLoginController(){}	
 	// #########################################################
 
 	@Before("allValidatorMethodsPointcut()")
