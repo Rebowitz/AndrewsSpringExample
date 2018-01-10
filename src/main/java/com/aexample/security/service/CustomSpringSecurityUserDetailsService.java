@@ -35,7 +35,7 @@ import com.aexample.persistence.repositories.IUserRepository;
 //that results in an error for dbase access outside of session
 @Service("customSpringSecurityUserDetailsService")
 @Transactional
-public class CustomSpringSecurityUserDetailsService implements UserDetailsService {
+public class CustomSpringSecurityUserDetailsService implements UserDetailsService{
 	
 	Logger logger = LoggerFactory.getLogger(CustomSpringSecurityUserDetailsService.class);
 //	private static @ILogger Logger logger;	
@@ -44,13 +44,13 @@ public class CustomSpringSecurityUserDetailsService implements UserDetailsServic
 	private IUserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) {
 
 		try {
 			final UserAccount user = userRepository.findByEmail(email);
-			if (user == null) {
-				throw new UsernameNotFoundException("No user found with username: " + email);
-			}
+//			if (user == null) {
+//				throw new UsernameNotFoundException("No user found with username: " + email);
+//			}
 
 			logger.debug(user.getEmail());
 			logger.debug(user.getFirstName());
@@ -62,10 +62,11 @@ public class CustomSpringSecurityUserDetailsService implements UserDetailsServic
 					user.getAccountNonLocked(),getAuthorities(user.getRoles()));
 		
 	
-	}catch(final NullPointerException npe){
+		}catch(final NullPointerException npe){
 			logger.debug("Email used as a USER ID is: " + email);
 			logger.debug(npe.getMessage());
-			throw new RuntimeException(npe);
+			throw new UsernameNotFoundException("No user found with username: " + email);			
+		//	throw new RuntimeException(npe);
 		}catch (final Exception e) {
 			throw new RuntimeException(e);
 		}
