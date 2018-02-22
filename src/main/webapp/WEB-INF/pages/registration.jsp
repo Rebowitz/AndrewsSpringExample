@@ -2,139 +2,115 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Aexample</title>
-		
-		<link href="/website/resources/css/aexample.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- <script src="orgify.js"></script>  -->
-	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Aexample-Registration</title>
 
-	</head>
-	<body>
-<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
-<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
-<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="908";</script><script charset="UTF-8" src="/website/resources/scripts/menu.js" type="text/javascript"></script><script type="text/javascript">awmBuildMenu();</script>
-<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<link href="/website/resources/css/aexample.css" rel="stylesheet"
+	type="text/css" />
+<script src="/website/resources/scripts/jquery-3.2.1.js"></script>
+<script src="/website/resources/scripts/jquery.validate.js"></script>
+<script src="/website/resources/scripts/additional-methods.js"></script>
+<script src="/website/resources/scripts/pswd_info.js"></script>
 
-<!-- -->
-    
+<style>
+</style>
+</head>
+<body>
+<span style="float: right">
+	<a href="?lang=en">en</a> 
+</span>
 
-        
+	<div id="container">
+		<h2>Andrews Spring Example</h2>
+		<h6>Registration</h6>
 
-<div id="container">
+		<div id="form-div">
 
+			<form:form id="registration-form" modelAttribute="userDto" 
+				action="/j_spring_security_check" method="POST" enctype="utf8">
+				<div class="formdiv">
+					<form:label path="firstName"><spring:message code="label.user.firstName"/></form:label>
+					<form:input id="firstName" type="text" path="firstName" />
+					<form:errors path="firstName" cssClass="valErrors" element="div" />
+       				<div class="valErrors"></div>  <!-- errors via jquery -->						
+				</div>
+			
+				<div class="formdiv">
+					<form:label path="lastName"><spring:message code="label.user.lastName"/></form:label>
+					<form:input id="lastName" type="text" path="lastName" />
+					<form:errors path="lastName" cssClass="valErrors" element="div" />
+       				<div class="valErrors"></div>  <!-- errors via jquery -->						
+				</div>
+				<div class="formdiv">
+					<form:label path="email"><spring:message code="label.user.email"/></form:label>
+					<form:input id="email" type="email" path="email" />
+					<form:errors path="email" cssClass="valErrors" element="div" />
+					<div>
+						<c:if test="${not empty errorMessage}">
+	  						<span class="valErrors">${errorMessage}</span>
+						</c:if>
+					</div>
+       				<div class="valErrors"></div>  <!-- errors via jquery -->						
+				</div>
+				<div class="formdiv">
+					<form:label path="password"><spring:message code="label.user.password"/></form:label>
+					<form:input id="password" type="password" path="password" />
+					<form:errors path="password" cssClass="valErrors" element="div" />
+       				<div class="valErrors"></div>  <!-- errors via jquery -->						
+				</div>
+					<div class="pswd_info" id="pswd_info">
+						<h4 id="pswd_header" class="notverified">Password must meet the following requirements:</h4>
+						
+						<ul>
+							<li id="letter" class="invalid">At least <strong>one
+									letter</strong></li>
+							<li id="capital" class="invalid">At least <strong>one
+									capital letter</strong></li>
+							<li id="number" class="invalid">At least <strong>one
+									number</strong></li>
+							<li id="special" class="invalid">At least <strong>one special 
+									character</strong></li>									
+							<li id="length" class="invalid">Be at least <strong>8
+									characters</strong></li>
+						</ul>
+					</div>
+				<div class="formdiv">
+					<form:label
+						path="matchingPassword"><spring:message code="label.user.confirmPass"/></form:label>
+					<form:input id="matchingPassword" type="password"
+						path="matchingPassword" />
+					<form:errors path="matchingPassword" cssClass="valErrors" element="div" />
+       				<div class="valErrors"></div>  <!-- errors via jquery -->						
+				</div>
+				<div class="buttondiv">
+					<!-- <button type="submit" text="${label.form.submit}">Submit</button>  -->
+					<input id="submit" type="submit" text="${label.form.submit}" value="submit"
+						onClick="submitForm();" /> <a href="/website/login.html"
+						text="${label.form.loginLink}">Login</a>
+				</div>
 
-<div id="css-row2">
-<div id="registration">	
-<form:form id="registrationForm" method="post" action="registration" modelAttribute="registrationBean">
+			</form:form>
 
-
-<div id="form-div">
-
-            <table border="1" cellpadding="5">
-                <thead>
-                    <tr>
-                        <th colspan="2"><spring:message code="label.form.title"></spring:message></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><label>
-                        <spring:message code="label.user.organizationName"></spring:message>
-                        </label>
-                        </td>
-                        <td><form:input type="text" path="orgName" value="" size="50" maxlength="50"/></td>
-                        <td><form:errors path="orgName" cssStyle="color: #ff0000;"/></td>
-                    </tr>
-                    <tr>
-                        <td><label>
-              				<spring:message code="label.user.firstName"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input type="text" path="firstName" value="" size="15" maxlength="15"/></td>
-                        <td><form:errors path="firstName" cssStyle="color: #ff0000;"/></td>                        
-                    </tr>
-                    <tr>
-                        <td><label>
-              				<spring:message code="label.user.lastName"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input type="text" path="lastName" value=""  size="25" maxlength="25"/></td>
-                        <td><form:errors path="lastName" cssStyle="color: #ff0000;"/></td>                        
-                    </tr>
-                    <tr>
-						<td><label>
-              				<spring:message code="label.user.email"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input type="text" path="email" value=""  size="25" maxlength="50"/></td>
-                        <td><form:errors path="email" cssStyle="color: #ff0000;"/></td>                        
-                    </tr>
-                    <tr>
-                        <td><label>
-              				<spring:message code="label.user.loginId"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input pattern=".{8,15}" type="text" path="loginId" value="" size="15" maxlength="15"/></td>
-                        <td><form:errors path="loginId" cssStyle="color: #ff0000;"/></td>                        
-                    </tr>
-                    <tr>
-                       <td><label>
-              				<spring:message code="label.user.password"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input pattern=".{8,15}" path="password" value="" type="password" size="15" maxlength="15"/></td>
-                        <form:errors path="password" element="div" cssStyle="color: #ff0000;"/>                        
-                    </tr>
-                    <tr>
-                        <td><label>
-              				<spring:message code="label.user.confirmPass"></spring:message>
-            				</label>
-            			</td>
-                        <td><form:input pattern=".{8,15}" path="matchingPassword" value="" type="password" size="15" maxlength="15"/></td>
-                        <td><form:errors element="div" cssStyle="color: #ff0000;"/></td>                        
-                    </tr>                    
-                    <tr>
-                      <td><button type="submit">
-          				<spring:message code="label.form.submit"></spring:message>
-        				</button>
-        			  </td>
-                      <td><button type="reset">
-                      	<spring:message code="label.form.reset"></spring:message>
-                      	</button>
-                      </td>
-                    </tr>
-
-                </tbody>
-            </table>
-      </div>      
-
-    </form:form>
-    <br>
-    <a href="<c:url value="login.html" />">
-        <spring:message code="label.form.loginLink"></spring:message>
-    </a>
-
-	</div>        
-	
-<!-- form used to be here -->
+			<!-- form used to be here -->
 
 		</div>
 
-
-
-
-		<div id="footer"><span><a href="index.html"> homepage </a> | <a href="mailto:rbais@rbais.com">contact </a> | <a href="http://validator.w3.org/check?uri=referer">xhtml </a> | <a href="http://jigsaw.w3.org/css-validator">css </a>|  &copy; 2017 Robert B. Andrews - 165 Savannah Drive - Strasburg, Virginia 22657</span> 
+		<div id="footer">
+			<span><a href="index.html"> homepage </a> | <a
+				href="mailto:rbais@rbais.com">contact </a> | <a
+				href="http://validator.w3.org/check?uri=referer">xhtml </a> | <a
+				href="http://jigsaw.w3.org/css-validator">css </a>| &copy; 2017
+				Robert B. Andrews - 165 Savannah Drive - Strasburg, Virginia 22657</span>
 		</div>
 
-</div>	
+	</div>
 
-
-	</body>
+</body>
 </html>

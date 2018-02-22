@@ -1,3 +1,5 @@
+<%@include file="include.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -8,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>AExample - Reset Password</title>
+<title>AExample-Reset Password</title>
 
 
 <link href="/website/resources/css/aexample.css" rel="stylesheet"
@@ -27,8 +29,7 @@
 
 		<div id="form-div">
 
-			<form:form id="resetPasswordForm" modelAttribute="PasswordDto" 
-				action="/j_spring_security_check" method="POST" enctype="utf8">
+			<form:form id="resetPassword-form" action="/website/user/resetPassword" modelAttribute="passwordDto" method="POST" enctype="utf8">
 
 				<div class="formdiv">
 					<form:label path="email"><spring:message code="label.user.email"/></form:label>
@@ -52,9 +53,9 @@
 
 
 				<div class="formdiv">
-					<form:label path="newPassword"><spring:message code="newPassword"/></form:label>
-					<form:input id="newPassword" type="password" path="newPassword" />
-					<form:errors path="newPassword" cssClass="valErrors" element="div" />
+					<form:label path="password"><spring:message code="label.user.newPassword"/></form:label>
+					<form:input id="password" type="password" path="password" />
+					<form:errors path="password" cssClass="valErrors" element="div" />
        				<div class="valErrors"></div>  <!-- errors via jquery -->						
 				</div>
 					<div class="pswd_info" id="pswd_info">
@@ -76,37 +77,26 @@
 					
 				<div class="formdiv">
 					<form:label
-						path="confirmgPassword"><spring:message code="label.user.confirmPass"/></form:label>
-					<form:input id="confirmgPassword" type="password"
-						path="confirmgPassword" />
-					<form:errors path="confirmgPassword" cssClass="valErrors" element="div" />
+						path="matchingPassword"><spring:message code="label.user.confirmPass"/></form:label>
+					<form:input id="matchingPassword" type="password"
+						path="matchingPassword" />
+					<form:errors path="matchingPassword" cssClass="valErrors" element="div" />
        				<div class="valErrors"></div>  <!-- errors via jquery -->						
 				</div>
 				<div class="buttondiv">
 					<!-- <button type="submit" text="${label.form.submit}">Submit</button>  -->
 					<input id="submit" type="submit" text="${label.form.submit}" value="submit"
-						onClick="submitForm();" /> <a href="/login.html"
+						onClick="submitForm();" /> <a href="/website/login.html"
 						text="${label.form.loginLink}">Login</a>
 				</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />				
 
 			</form:form>
 
-						<tr>
-							<td colspan='2'><input name="submit" type="submit"
-								value="submit" /></td>
-						</tr>
-					</table>
-
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-
-				</form>
-			</div>
-		
-			<div class="login-help">
-				<a href="@{/resetPassword.html}">${message.resetPassword}</a>
-			</div>
 		</div>
+
+	</div>
 
 		<div id="footer">
 			<span><a href="index.html"> homepage </a> | <a

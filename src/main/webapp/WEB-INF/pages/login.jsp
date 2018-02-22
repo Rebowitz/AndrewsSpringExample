@@ -95,12 +95,12 @@
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 
+				<a href="/website/user/resetPassword.html">Reset Password</a><BR>
+				<a href="/website/user/registration.html">Create an Account</a>						
+
 				</form>
 			</div>
 		
-			<div class="login-help">
-				<a href="/resetPassword.html">Reset Password</a>
-			</div>
 		</div>
 
 		<div id="footer">
