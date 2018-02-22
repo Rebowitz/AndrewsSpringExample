@@ -19,8 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 //ApplicationContext will be loaded from "/base-context.xml" in the root of the classpath
 @ContextConfiguration
-@ComponentScan(basePackages = { "AexampleTestConfiguration.class"
-		,"PersistenceJPAConfigTest.class","com.aexample.persistence.repositories",})
+@ComponentScan(basePackages = { "AexampleTestConfiguration.class"})
 public class BaseTest {
 
 }

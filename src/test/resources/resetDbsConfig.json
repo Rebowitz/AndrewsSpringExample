@@ -1,0 +1,26 @@
+[
+	{
+		"sql3": "DELETE FROM roles_privileges WHERE 1",	
+		"sql1": "DELETE FROM roles WHERE 1",			
+		"sql2": "DELETE FROM privileges WHERE 1",	
+		"sql4": "DELETE FROM userVerificationToken WHERE 1",
+		"sql5": "DELETE FROM userPasswordResetToken WHERE 1",
+		"sql6": "DELETE FROM userAccount WHERE 1",
+		"sql7": "DELETE FROM userLoginAttempts WHERE 1",
+		"sql8": "DELETE FROM activityLog WHERE 1",
+		"sql9": "DELETE FROM roles_privileges WHERE 1",
+		"sql10": "DELETE FROM user_roles",		
+		"sql11": "DELETE FROM transactionLog WHERE 1",
+		"sql12": "ALTER TABLE userVerificationToken AUTO_INCREMENT=1",
+		"sql13": "ALTER TABLE userPasswordResetToken AUTO_INCREMENT=1",
+		"sql14": "ALTER TABLE userAccount AUTO_INCREMENT=1",
+		"sql15": "ALTER TABLE userLoginAttempts AUTO_INCREMENT=1",
+		"sql16": "ALTER TABLE activityLog AUTO_INCREMENT=1",
+		"sql17": "ALTER TABLE privileges AUTO_INCREMENT=1",
+		"sql18": "ALTER TABLE roles_privileges AUTO_INCREMENT=1",
+		"sql19": "ALTER TABLE user_roles AUTO_INCREMENT=1",
+		"sql20": "ALTER TABLE transactionLog AUTO_INCREMENT=1",
+		"sql21": "ALTER TABLE roles AUTO_INCREMENT=1"
+		}
+		
+]

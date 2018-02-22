@@ -1,0 +1,84 @@
+[
+
+	{
+		"className": "com.aexample.persistence.model.ActivityLog",	
+		"id": 1, 
+		"dateTime": "01-31-2018T18:25:43", 
+		"userId": "bogus@bogus.com", 
+		"accountId": 2345,
+		"activity": "activity", 
+		"action": "action", 
+		"outcome": "outcome", 
+		"note": "note"
+	},
+	{
+		"className": "com.aexample.persistence.model.Privileges",		
+			"id": 1,
+			"name": "name"
+	},
+	{		
+		"className": "com.aexample.persistence.model.Roles",				
+			"id": 1, 
+			"name": "name"
+	},
+	{				
+		"className": "com.aexample.persistence.model.RolesPrivileges",	
+			"role_id": 1,
+			"privilege_id": 1
+	},
+	{				
+		"className": "com.aexample.persistence.model.TransactionLog",	
+			"id": 1, 
+			"dateTime": "01-31-2018T18:25:43",
+			"userId": "bogus@bogus.com", 
+			"accountId": 2345,
+			"activity": "activity", 
+			"action": "action", 
+			"outcome": "outcome", 
+			"note": "note"
+	},
+	{				
+		"className": "com.aexample.persistence.model.UserAccount",	
+			"id": 1, 
+			"firstName": "firstName", 
+			"lastName": "lastName", 
+			"email": "email",
+			"encryptedPassword": "encryptedPassword", 
+			"secret": "secret",
+			"deviceId": "deviceId", 
+			"accountNonExpired": true,
+			"accountNonLocked": true,
+			"credentialsNonExpired": true,
+			"enabled": true,
+			"createDate": "01-31-2018T18:25:43"
+	},
+	{				
+		"className": "com.aexample.persistence.model.UserLoginAttempts",						
+			"id": 1, 
+			"userId": "email", 
+			"attempts": 1, 
+			"lastModified": "01-31-2018T18:25:43", 
+			"dateCreated": "01-31-2018T18:25:43"
+	},
+	{				
+		"className": "com.aexample.persistence.model.UserPasswordResetToken",		
+			"id": 1, 
+			"token": "token", 
+			"expiryDate": "01-31-2018T18:25:43",
+			"newEncryptPassword": "newEncryptPassword"
+	},
+	{				
+		"className": "com.aexample.persistence.model.UserRoles",		
+			"user_Id": 1, 
+			"role_Id": 1
+	},
+	{		
+		"className": "com.aexample.persistence.model.UserVerificationToken",		
+			"id": 1, 
+			"token": "token", 
+			"previousToken": "previousToken", 
+			"expiryDate": "01-31-2018T18:25:43"															
+	}
+
+]
+

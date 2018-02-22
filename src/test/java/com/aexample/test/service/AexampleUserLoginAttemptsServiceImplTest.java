@@ -51,7 +51,7 @@ public class AexampleUserLoginAttemptsServiceImplTest {
 	@Test
 	public void testSaveUserLoginAttempt(){
 		UserLoginAttempts userLoginAttempts = new UserLoginAttempts();
-		userLoginAttempts.setEmail("bogustestemail@aexample.com");
+		userLoginAttempts.setUserId("bogustestemail@aexample.com");
 		userLoginAttempts.setAttempts(1);
 		userLoginAttempts.setLastModified(new Date());
 		

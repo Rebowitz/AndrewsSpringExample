@@ -9,12 +9,14 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import com.aexample.log4j.Slf4jTestWatcher;
 import com.aexample.spring.config.WebMvcConfig;
+import com.aexample.test.config.SpringMvcInitializerTest;
+import com.aexample.test.config.WebMvcConfigTest;
 
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 
-@ContextConfiguration( classes = { WebMvcConfig.class },
+@ContextConfiguration( classes = { SpringMvcInitializerTest.class },
 //@ContextConfiguration( classes = { Configuration.class, PersistenceConfig.class },
 loader = AnnotationConfigContextLoader.class ) 
 public class SpringTest {

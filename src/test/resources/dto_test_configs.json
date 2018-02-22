@@ -1,0 +1,42 @@
+[
+
+	{
+			"className": "com.aexample.website.dto.EmailDto",
+			"configname": "EMAILDTO",
+			"filename": "mock_email_template.html",
+			"fromaddress": "support@aexample.com",
+			"subject": "AExample Account Activation",
+			"placeholder": "SUBSTITUTE_TOKEN_HERE",
+			"urlsuffix": "Confirm.html?token=",
+			"tokenneeded": true,
+			"multipart": true,
+			"mimetype": "html"
+	},
+	{
+			"className": "com.aexample.website.dto.EmailOnlyDto",
+			"email": "support@aexample.com"
+	},
+	{
+			"className": "com.aexample.website.dto.PasswordDto",
+			"oldPassword": "oldPassword",
+			"password": "password",
+			"matchingPassword": "matchingPassword"
+	},
+	{
+			"className": "com.aexample.website.dto.RegistrationDto",			
+			"organizationName": "AExample",
+			"organizationKey": "AExampleKey",
+			"email": "support@aexample.com",
+			"password": "password",
+			"registered": true,
+			"deviceId": "IoTDevice"
+	},
+	{
+			"className": "com.aexample.website.dto.UserDto",	
+			"firstName": "FirstName",
+			"lastName": "LastName",
+			"password": "password",
+			"matchingPassword": "matchingPassword",
+			"email": "support@aexample.com"
+	}
+]
