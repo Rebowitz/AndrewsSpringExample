@@ -34,9 +34,9 @@
 		},
 		{
 			"configname": "RESETPASSWORD",
-			"filename": "regconfirm_email_template.html",
+			"filename": "resetpassword_email_template.html",
 			"fromaddress": "support@aexample.com",
-			"subject": "AExample Account Activation",
+			"subject": "AExample Confirm Password Change",
 			"placeholder": "SUBSTITUTE_TOKEN_HERE",
 			"urlsuffix": "Confirm.html?token=",
 			"tokenneeded": "true",			

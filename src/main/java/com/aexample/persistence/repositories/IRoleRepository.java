@@ -12,15 +12,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */
 
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Roles;
 
-public interface IRoleRepository extends JpaRepository<Role, Long> {
+public interface IRoleRepository extends JpaRepository<Roles, Long> {
 
 
-	Role findByName(String name);
+	Roles findByName(String name);
 
   //  @Override
-    void delete(Role role);
+    void delete(Roles roles);
 
 	/**
 	 * @param id

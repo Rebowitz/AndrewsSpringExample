@@ -67,7 +67,7 @@ public class UserLoginAttemptsServiceImpl implements IUserLoginAttemptsService{
     public String addUserLoginAttempts(String email, Date date){
 		
 		UserLoginAttempts userLoginAttempts = new UserLoginAttempts();
-		userLoginAttempts.setEmail(email);
+		userLoginAttempts.setUserId(email);
 		userLoginAttempts.setAttempts(1);
 		userLoginAttempts.setLastModified(date);
 		userLoginAttempts.setDateCreated(date);
@@ -106,7 +106,7 @@ public class UserLoginAttemptsServiceImpl implements IUserLoginAttemptsService{
 					
 					UserAccount user = new UserAccount();
 					
-					user = userRepository.findByEmail(userLoginAttempts.getEmail());
+					user = userRepository.findByEmail(userLoginAttempts.getUserId());
 					
 					user.setAccountNonLocked(false);
 					userRepository.saveAndFlush(user);
@@ -132,13 +132,13 @@ public class UserLoginAttemptsServiceImpl implements IUserLoginAttemptsService{
 			UserLoginAttempts userAttempts = userLoginAttemptsRepository.findByEmail(email);
 			userLoginAttempts = new UserLoginAttempts();
 			userLoginAttempts.setId(userAttempts.getId());
-			userLoginAttempts.setEmail(userAttempts.getEmail());
+			userLoginAttempts.setUserId(userAttempts.getUserId());
 			userLoginAttempts.setAttempts(userAttempts.getAttempts());
 			userLoginAttempts.setLastModified(userAttempts.getLastModified());
 			userLoginAttempts.setDateCreated(userAttempts.getDateCreated());
 
 			logger.debug("Id is: " + userLoginAttempts.getId());
-			logger.debug("Email is: " + userLoginAttempts.getEmail());
+			logger.debug("Email is: " + userLoginAttempts.getUserId());
 			logger.debug("Attempts is: " + userLoginAttempts.getAttempts());
 			logger.debug("LastModified is: " + userLoginAttempts.getLastModified().toString());
 			

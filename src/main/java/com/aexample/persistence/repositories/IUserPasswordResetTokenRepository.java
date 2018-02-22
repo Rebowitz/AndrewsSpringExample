@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.aexample.persistence.model.Privilege;
+import com.aexample.persistence.model.Privileges;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserPasswordResetToken;
 
@@ -18,10 +18,10 @@ public interface IUserPasswordResetTokenRepository extends JpaRepository<UserPas
 //	void delete(String token);
 	
 	/* (non-Javadoc)
-	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privilege)
+	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privileges)
 	 */
 	//@Override
-	default void delete(Privilege privilege) {
+	default void delete(Privileges privileges) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -43,6 +43,6 @@ public interface IUserPasswordResetTokenRepository extends JpaRepository<UserPas
     void deleteByExpiryDateLessThan(Date now);
 
     @Modifying
-    @Query("delete from userPasswordResetToken t where t.expiryDate <= ?1")
+    @Query("delete from UserPasswordResetToken t where t.expiryDate <= ?1")
     void deleteAllExpiryDateSince(Date now);
 }

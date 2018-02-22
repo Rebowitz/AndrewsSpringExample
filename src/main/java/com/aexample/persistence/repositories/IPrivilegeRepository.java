@@ -5,6 +5,8 @@ package com.aexample.persistence.repositories;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author Main Login
@@ -12,20 +14,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * $Date$
  *
  */
-import com.aexample.persistence.model.Privilege;
+import com.aexample.persistence.model.Privileges;
 
-public interface IPrivilegeRepository extends JpaRepository<Privilege, Long> {
+public interface IPrivilegeRepository extends JpaRepository<Privileges, Long> {
 
 	/* (non-Javadoc)
-	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privilege)
+	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privileges)
 	 */
 	//@Override
-	default void delete(Privilege privilege) {
+	default void delete(Privileges privileges) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	Privilege findByName(String name);
+    @Query("SELECT p from Privileges p WHERE p.name = :name")
+	Privileges findByName(@Param("name") String name);
 
 
 }

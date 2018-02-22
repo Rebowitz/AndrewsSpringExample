@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.aexample.persistence.model.Privilege;
+import com.aexample.persistence.model.Privileges;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.model.UserVerificationToken;
 
@@ -18,10 +18,10 @@ public interface IUserVerificationTokenRepository  extends JpaRepository<UserVer
 //	void delete(String token);
 	
 	/* (non-Javadoc)
-	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privilege)
+	 * @see com.aexample.persistence.repositories.IBaseRepository#delete(com.aexample.persistence.model.Privileges)
 	 */
 	//@Override
-	default void delete(Privilege privilege) {
+	default void delete(Privileges privileges) {
 		// TODO Auto-generated method stub
 		
 	}

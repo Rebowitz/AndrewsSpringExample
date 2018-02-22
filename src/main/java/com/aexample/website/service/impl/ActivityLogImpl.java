@@ -3,6 +3,8 @@
  */
 package com.aexample.website.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.aexample.persistence.model.ActivityLog;
@@ -26,6 +28,12 @@ public class ActivityLogImpl implements IActivityLogService{
 	public ActivityLog saveActivityRecord(ActivityLog persisted) {
 		activityLogRepository.save(persisted);
 		return null;
+	}
+	
+	public List<ActivityLog> findByAccountId(Long accountId){
+		List<ActivityLog> activityLogList = activityLogRepository.findByAccountId(accountId);
+		return activityLogList;
+		
 	}
 
 }

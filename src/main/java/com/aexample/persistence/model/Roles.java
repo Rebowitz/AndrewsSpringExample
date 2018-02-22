@@ -12,6 +12,7 @@ package com.aexample.persistence.model;
 import java.util.Collection;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,15 +21,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Roles {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     
+    @NotNull
 	private String name;
     
     @ManyToMany(mappedBy = "roles")  //this is the mapped name in the UserAccount class
@@ -36,13 +39,13 @@ public class Role {
 
     @ManyToMany
     @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
-    private Collection<Privilege> privileges;
+    private Collection<Privileges> privileges;
 
-    public Role() {
+    public Roles() {
         super();
     }
 
-    public Role(final String name) {
+    public Roles(final String name) {
         super();
         this.name = name;
     }
@@ -71,11 +74,11 @@ public class Role {
         this.users = users;
     }
 
-    public Collection<Privilege> getPrivileges() {
+    public Collection<Privileges> getPrivileges() {
         return privileges;
     }
 
-    public void setPrivileges(final Collection<Privilege> privileges) {
+    public void setPrivileges(final Collection<Privileges> privileges) {
         this.privileges = privileges;
     }
 
@@ -98,17 +101,20 @@ public class Role {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Role role = (Role) obj;
-        if (!role.equals(role.name)) {
+        final Roles roles = (Roles) obj;
+        if (!roles.equals(roles.name)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Role [name=").append(name).append("]");
-        return builder.toString();
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Roles [id=" + id + ", name=" + name + ", users=" + users + ", privileges=" + privileges + "]";
+	}
+
+
 }

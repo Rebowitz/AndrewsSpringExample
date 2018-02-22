@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  * $Date$
  *
  */
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Roles;
 import com.aexample.persistence.repositories.IRoleRepository;
 import com.aexample.website.service.IRoleService;
 
@@ -32,15 +32,15 @@ public class RoleServiceImpl implements IRoleService {
     }
  
     @Override
-    public List<Role> listAll() {
-        List<Role> roles = new ArrayList<>();
+    public List<Roles> listAll() {
+        List<Roles> roles = new ArrayList<>();
         roleRepository.findAll().forEach(roles::add);
         return roles;
     }
  
  
     @Override
-    public Role saveOrUpdate(Role domainObject) {
+    public Roles saveOrUpdate(Roles domainObject) {
         return roleRepository.save(domainObject);
     }
 
@@ -48,7 +48,7 @@ public class RoleServiceImpl implements IRoleService {
 	 * @see com.aexample.website.service.IRoleService#getById(java.lang.Integer)
 	 */
 	@Override
-	public Role getById(Integer id) {
+	public Roles getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

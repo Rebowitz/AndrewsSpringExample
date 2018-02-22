@@ -34,7 +34,7 @@ public interface IUserService{
 
     UserVerificationToken generateNewVerificationToken(String token);
 
-    void createPasswordResetTokenForUser(UserAccount user, String token);
+    void createPasswordResetTokenForUser(UserAccount user, String token, String newEncryptPassword);
 
     UserAccount findUserByEmail(String email);
 
@@ -50,6 +50,7 @@ public interface IUserService{
 
     String validateVerificationToken(String token);
 
+    String validateResetPasswordToken(String token);
 
     List<String> getUsersFromSessionRegistry();
     

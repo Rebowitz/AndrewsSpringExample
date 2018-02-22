@@ -3,6 +3,7 @@ package com.aexample.persistence.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -12,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "userVerificationToken")
@@ -20,17 +24,22 @@ public class UserVerificationToken {
     private static final int EXPIRATION = 60 * 24;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String token;
     
+    @NotNull
     private String previousToken;
 
     @OneToOne(targetEntity = UserAccount.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id", foreignKey = @ForeignKey(name = "FK_VERIFY_USER"))
     private UserAccount user;
 
+	@NotNull
+	@Column(name = "expiryDate", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
     private Date expiryDate;
 
     public UserVerificationToken() {
@@ -54,6 +63,10 @@ public class UserVerificationToken {
 
     public Long getId() {
         return id;
+    }
+    
+    public void setId(Long id){
+    	this.id = id;
     }
 
     public String getToken() {

@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.aexample.persistence.model.Privilege;
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Privileges;
+import com.aexample.persistence.model.Roles;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.repositories.IRoleRepository;
 import com.aexample.persistence.repositories.IUserRepository;
@@ -53,19 +53,19 @@ public class RegistrationUserDetailsService implements UserDetailsService {
     }
  
     private Collection<? extends GrantedAuthority> getAuthorities(
-      Collection<Role> roles) {
+      Collection<Roles> roles) {
   
         return getGrantedAuthorities(getPrivileges(roles));
     }
  
-    private List<String> getPrivileges(Collection<Role> roles) {
+    private List<String> getPrivileges(Collection<Roles> roles) {
   
         List<String> privileges = new ArrayList<>();
-        List<Privilege> collection = new ArrayList<>();
-        for (Role role : roles) {
-            collection.addAll(role.getPrivileges());
+        List<Privileges> collection = new ArrayList<>();
+        for (Roles rolexs : roles) {
+            collection.addAll(rolexs.getPrivileges());
         }
-        for (Privilege item : collection) {
+        for (Privileges item : collection) {
             privileges.add(item.getName());
         }
         return privileges;

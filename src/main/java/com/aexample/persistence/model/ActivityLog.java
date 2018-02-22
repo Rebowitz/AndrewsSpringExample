@@ -5,11 +5,14 @@ package com.aexample.persistence.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -23,10 +26,12 @@ import javax.validation.constraints.NotNull;
 public class ActivityLog{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
 	@NotNull
+	@Column(name = "dateTime", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	Date dateTime;
 	
 	//id assigned by dbase autoincrement primary key in userAccount
@@ -96,8 +101,8 @@ public class ActivityLog{
 	/**
 	 * @param long1 the accountId to set
 	 */
-	public void setAccountId(Long long1) {
-		this.accountId = long1;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 	/**
 	 * @return the activity

@@ -70,7 +70,6 @@ public class UserServiceImpl implements IUserService
     public void setEncryptionService(IEncryptionService encryptionService) {
         this.encryptionService = encryptionService;
     }
-    
 	public static final String TOKEN_INVALID = "invalidToken";
     public static final String TOKEN_EXPIRED = "expired";
     public static final String TOKEN_VALID = "valid";
@@ -179,8 +178,8 @@ public class UserServiceImpl implements IUserService
     
     @Transactional
     @Override
-    public void createPasswordResetTokenForUser(final UserAccount user, final String token) {
-        final UserPasswordResetToken myToken = new UserPasswordResetToken(token, user);
+    public void createPasswordResetTokenForUser(final UserAccount user, final String token, final String newEncryptPassword) {
+        final UserPasswordResetToken myToken = new UserPasswordResetToken(user, token, newEncryptPassword);
         passwordTokenRepository.save(myToken);
     }
 
@@ -249,6 +248,26 @@ public class UserServiceImpl implements IUserService
         return TOKEN_VALID;
     }
 
+    @Override
+    public String validateResetPasswordToken(String token) {
+        final UserPasswordResetToken verificationToken = passwordTokenRepository.findByToken(token);
+        if (verificationToken == null) {
+            return TOKEN_INVALID;
+        }
+
+        final UserAccount user = verificationToken.getUser();
+        final Calendar cal = Calendar.getInstance();
+        if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+        	passwordTokenRepository.delete(verificationToken);
+            return TOKEN_EXPIRED;
+        }
+
+       // user.setEnabled(true);
+        // tokenRepository.delete(verificationToken);
+//        userRepository.save(user);
+        return TOKEN_VALID;
+    }    
+    
     /* (non-Javadoc)
 	 * @see com.aexample.website.service.IUserService#serviceInstantiated()
 	 */

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -18,8 +19,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aexample.persistence.model.Privilege;
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Privileges;
+import com.aexample.persistence.model.Roles;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.repositories.IActivityLogRepository;
 import com.aexample.persistence.repositories.IPrivilegeRepository;
@@ -69,70 +70,31 @@ public class InitialDataLoader implements
   
         if (alreadySetup)
             return;
-        Privilege readPrivilege = createPrivilegeIfNotFound("READ_PRIVILEGE");
-        Privilege writePrivilege = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
+        Privileges readPrivilege = createPrivilegeIfNotFound("READ_PRIVILEGE");
+        Privileges writePrivilege = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
   
-        List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege);        
+        List<Privileges> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege);        
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
  
-        //clean out user_roles and userAccount tables
-		Connection conn = null;
-		String sql = "DELETE FROM user_roles WHERE 1";
-		String sql2 = "DELETE FROM userVerificationToken WHERE 1";
-		String sql3 = "DELETE FROM userAccount WHERE 1";
-		String sql4 = "DELETE FROM userLoginAttempts WHERE 1";
-		String sql5 = "DELETE FROM activityLog WHERE 1";
-    	try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.execute();
-			ps.close();
-			
-			ps = conn.prepareStatement(sql2);
-			ps.execute();
-			ps.close();
-
-			ps = conn.prepareStatement(sql3);
-			ps.execute();
-			ps.close();
-
-			ps = conn.prepareStatement(sql4);
-			ps.execute();
-			ps.close();
-
-			ps = conn.prepareStatement(sql5);
-			ps.execute();
-			ps.close();
-			
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+     
         
-        
- //       Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        
-        
+        Roles adminRole = roleRepository.findByName("ROLE_ADMIN");
         UserAccount user = new UserAccount();
+        
+        Date dateTime = new Date();
     	
-        user.setFirstName("Test");
-        user.setLastName("Object");
-        user.setEmail("TestObject@aexample.com");        
+        user.setFirstName("Initializer");
+        user.setLastName("Account");
+        user.setEmail("initializer@aexample.com");        
     	String password = "UsuallyBcryptEncoded";
     	//CharSequence charSeqPassword = "UsuallyBcryptEncoded";    	
         user.setEncryptedPassword(encryptionService.encryptString(password));
         user.setSecret("secret");
         user.setDeviceId("androiddevice");
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
-        user.setEnabled(Boolean.TRUE);
-        user.setAccountNonExpired(Boolean.TRUE);
-        user.setAccountNonLocked(Boolean.TRUE);
-        user.setCredentialsNonExpired(Boolean.TRUE);
-        user.setCredentialsNonExpired(Boolean.TRUE);
-        
-        
+        user.setRoles(Arrays.asList(adminRole));
+        user.setEnabled(true);  
+        user.setCreateDate(dateTime);
         
         userRepository.save(user);
  
@@ -140,27 +102,27 @@ public class InitialDataLoader implements
     }
  
     @Transactional
-    private Privilege createPrivilegeIfNotFound(String name) {
+    private Privileges createPrivilegeIfNotFound(String name) {
   
-        Privilege privilege = privilegeRepository.findByName(name);
-        if (privilege == null) {
-            privilege = new Privilege(name);
-            privilegeRepository.save(privilege);
+        Privileges privileges = privilegeRepository.findByName(name);
+        if (privileges == null) {
+            privileges = new Privileges(name);
+            privilegeRepository.save(privileges);
         }
-        return privilege;
+        return privileges;
     }
  
     @Transactional
-    private Role createRoleIfNotFound(
-      String name, Collection<Privilege> privileges) {
+    private Roles createRoleIfNotFound(
+      String name, Collection<Privileges> privileges) {
   
-    	Role role = roleRepository.findByName(name);
-        if (role == null) {
-        	role = new Role();
-        	role.setName(name);
-        	role.setPrivileges(privileges);
-            roleRepository.save(role);
+    	Roles roles = roleRepository.findByName(name);
+        if (roles == null) {
+        	roles = new Roles();
+        	roles.setName(name);
+        	roles.setPrivileges(privileges);
+            roleRepository.save(roles);
         }
-        return role;
+        return roles;
     }
 }

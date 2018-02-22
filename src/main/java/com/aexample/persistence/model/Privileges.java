@@ -11,31 +11,36 @@ package com.aexample.persistence.model;
  */
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "privileges")
-public class Privilege {
+public class Privileges {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
     @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> role;
+    private Collection<Roles> roles;
 
-    public Privilege() {
+    public Privileges() {
         super();
     }
 
-    public Privilege(final String name) {
+    public Privileges(final String name) {
         super();
         this.name = name;
     }
@@ -58,12 +63,12 @@ public class Privilege {
         this.name = name;
     }
 
-    public Collection<Role> getRoles() {
-        return role;
+    public Collection<Roles> getRoles() {
+        return roles;
     }
 
-    public void setRole(final Collection<Role> role) {
-        this.role = role;
+    public void setRoles(final Collection<Roles> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -82,7 +87,7 @@ public class Privilege {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Privilege other = (Privilege) obj;
+        Privileges other = (Privileges) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -91,11 +96,14 @@ public class Privilege {
         return true;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Privilege [name=").append(name).append("]").append("[id=").append(id).append("]");
-        return builder.toString();
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Privileges [id=" + id + ", name=" + name + ", roles=" + roles + "]";
+	}
+
+
 }
 

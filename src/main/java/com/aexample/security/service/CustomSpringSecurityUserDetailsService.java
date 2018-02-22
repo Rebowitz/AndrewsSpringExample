@@ -25,8 +25,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aexample.persistence.model.Privilege;
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Privileges;
+import com.aexample.persistence.model.Roles;
 import com.aexample.persistence.model.UserAccount;
 import com.aexample.persistence.repositories.IUserRepository;
 
@@ -35,7 +35,7 @@ import com.aexample.persistence.repositories.IUserRepository;
 //that results in an error for dbase access outside of session
 @Service("customSpringSecurityUserDetailsService")
 @Transactional
-public class CustomSpringSecurityUserDetailsService implements UserDetailsService{
+public class CustomSpringSecurityUserDetailsService implements UserDetailsService {
 	
 	Logger logger = LoggerFactory.getLogger(CustomSpringSecurityUserDetailsService.class);
 //	private static @ILogger Logger logger;	
@@ -44,13 +44,13 @@ public class CustomSpringSecurityUserDetailsService implements UserDetailsServic
 	private IUserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		try {
 			final UserAccount user = userRepository.findByEmail(email);
-//			if (user == null) {
-//				throw new UsernameNotFoundException("No user found with username: " + email);
-//			}
+			if (user == null) {
+				throw new UsernameNotFoundException("No user found with username: " + email);
+			}
 
 			logger.debug(user.getEmail());
 			logger.debug(user.getFirstName());
@@ -62,11 +62,10 @@ public class CustomSpringSecurityUserDetailsService implements UserDetailsServic
 					user.getAccountNonLocked(),getAuthorities(user.getRoles()));
 		
 	
-		}catch(final NullPointerException npe){
+	}catch(final NullPointerException npe){
 			logger.debug("Email used as a USER ID is: " + email);
 			logger.debug(npe.getMessage());
-			throw new UsernameNotFoundException("No user found with username: " + email);			
-		//	throw new RuntimeException(npe);
+			throw new RuntimeException(npe);
 		}catch (final Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -75,17 +74,17 @@ public class CustomSpringSecurityUserDetailsService implements UserDetailsServic
 
 	// UTIL
 
-	private final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Role> roles) {
+	private final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Roles> roles) {
 		return getGrantedAuthorities(getPrivileges(roles));
 	}
 
-	private final List<String> getPrivileges(final Collection<Role> roles) {
+	private final List<String> getPrivileges(final Collection<Roles> roles) {
 		final List<String> privileges = new ArrayList<String>();
-		final List<Privilege> collection = new ArrayList<Privilege>();
-		for (final Role role : roles) {
-			collection.addAll(role.getPrivileges());
+		final List<Privileges> collection = new ArrayList<Privileges>();
+		for (final Roles rolexs : roles) {
+			collection.addAll(rolexs.getPrivileges());
 		}
-		for (final Privilege item : collection) {
+		for (final Privileges item : collection) {
 			privileges.add(item.getName());
 		}
 

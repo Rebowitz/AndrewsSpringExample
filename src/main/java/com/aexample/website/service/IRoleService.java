@@ -5,7 +5,7 @@ package com.aexample.website.service;
 
 import java.util.List;
 
-import com.aexample.persistence.model.Role;
+import com.aexample.persistence.model.Roles;
 import com.aexample.persistence.repositories.IRoleRepository;
 
 /**
@@ -19,11 +19,11 @@ public interface IRoleService {
 	
     public void setRoleRepository(IRoleRepository roleRepository);
  
-    public List<Role> listAll();
+    public List<Roles> listAll();
  
-    public Role getById(Integer id);
+    public Roles getById(Integer id);
  
-    public Role saveOrUpdate(Role domainObject);
+    public Roles saveOrUpdate(Roles domainObject);
  
     public void delete(Integer id);
 

@@ -3,6 +3,8 @@
  */
 package com.aexample.website.service;
 
+import java.util.List;
+
 import com.aexample.persistence.model.ActivityLog;
 
 /**
@@ -14,5 +16,6 @@ import com.aexample.persistence.model.ActivityLog;
 public interface IActivityLogService {
 	
 	ActivityLog saveActivityRecord(ActivityLog persisted);
+	List<ActivityLog> findByAccountId(Long accountId);
 
 }

@@ -12,13 +12,16 @@ import org.springframework.context.ApplicationEvent;
 import com.aexample.persistence.model.UserAccount;
 
 /**
- * @author Main Login
+ * @author Robert B. Andrews
  * $Rev$
  * $Date$
  *
  */
-@SuppressWarnings("serial")
-public class OnResetPasswordRequestEvent extends ApplicationEvent {
+public class OnSendPasswordResetTokenEvent  extends ApplicationEvent {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6185793106378416096L;
 
 	/*use of the annotation injection of the logger throws 
 	 * a null pointer exception in the ApplicationEvent Context  
@@ -29,14 +32,12 @@ public class OnResetPasswordRequestEvent extends ApplicationEvent {
     private final String appUrl;
     private final Locale locale;
     private final UserAccount user;
-    private final String resetPasswordToken;
     
-	public OnResetPasswordRequestEvent(final UserAccount user, final Locale locale, final String appUrl, final String resetPasswordToken) {
+	public OnSendPasswordResetTokenEvent(final UserAccount user, final Locale locale, final String appUrl) {
 		super(user);
         this.user = user;
         this.locale = locale;
         this.appUrl = appUrl;
-        this.resetPasswordToken = resetPasswordToken;
 		// TODO Auto-generated constructor stub
 	}
     //
@@ -52,9 +53,5 @@ public class OnResetPasswordRequestEvent extends ApplicationEvent {
     public UserAccount getUser() {
         return user;
     }
-	
-	public String getResetPasswordToken(){
-		return resetPasswordToken;
-	}
-	
-}
+}    
+

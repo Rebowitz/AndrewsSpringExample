@@ -33,8 +33,6 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 				AuthenticationJPAConfig.class, 				
 				ServiceConfig.class,
 				AppConfig.class, 
-				WebRequestContextListener.class, 
-				SpringRepositoryConfig.class,
 				AspectBeansRootContextConfig.class, 
 				AopConfigRootContext.class };
 		// AuthenticationJPAConfig allows a separate connection for either

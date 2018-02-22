@@ -28,6 +28,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import com.aexample.persistence.model.UserAccount;
+import com.aexample.persistence.model.UserPasswordResetToken;
 import com.aexample.persistence.model.UserVerificationToken;
 import com.aexample.website.dto.EmailDto;
 import com.aexample.website.service.IUserService;
@@ -170,6 +171,72 @@ public class CustomHTMLMailer {
 		return ("email process completed - " + returnTxt);
 	}
 
+	public final String rockinTheEmailMessage2(UserAccount user, String configname, String appUrl, String token) {
+
+		// get the email config from the config structure
+		EmailDto emailDto = (EmailDto) emailConfigMap.get(configname);
+		logger.debug("appUrl is: " + appUrl);
+		logger.debug("RockingTheEmailMessage2 using " + configname);
+		logger.debug("The token is: " + token);
+		
+		//here for documentation purposes
+		final String TOKEN_INVALID = "invalidToken";
+		final String TOKEN_EXPIRED = "expired";
+		final String TOKEN_VALID = "valid";
+
+		String msg = null;
+		String confirmationUrl = null;
+		String theToken = null;
+		String result = null;
+
+		if (emailDto.getTokenneeded().booleanValue() == true) {
+
+			UserPasswordResetToken uvtoken = userService.getPasswordResetToken(token);
+			if(uvtoken != null){
+				
+				logger.debug("Found userPasswordResetToken record");
+				 theToken = uvtoken.getToken();
+				//checks expiry date
+				 result = userService.validateResetPasswordToken(theToken);
+				 logger.debug("validateVerificationToken returned: " + result);
+			}else{
+				logger.debug("No userPasswordResetToken record found!!");
+				result = TOKEN_INVALID;
+				logger.debug(result);
+			}
+			
+			if (result.equalsIgnoreCase(TOKEN_VALID)) {
+
+				logger.debug("Using valid token from repository");
+				confirmationUrl = appUrl + emailDto.getUrlsuffix() + theToken;
+			}else{
+				return ("email process completed - " + result);
+			}
+
+		} else {
+			confirmationUrl = appUrl + emailDto.getUrlsuffix();
+			logger.debug("Created confirmationUrl: " + confirmationUrl);
+		}
+
+		emailDto.setToaddress(user.getEmail());
+		emailConfigMap.put(configname, emailDto);
+
+		// Set key values--identify location in email for button confirmation
+		// link
+		Map<String, String> input = new HashMap<String, String>();
+		input.put(emailDto.getPlaceholder(), confirmationUrl);
+		try {
+			msg = readEmailFromHtml(configname, input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String returnTxt = sendTheEmail(msg, emailDto);
+
+		return ("email process completed - " + returnTxt);
+	}	
+	
 	// Method to replace the values for keys in HTML Emails
 	private String readEmailFromHtml(String configName, Map<String, String> input) throws IOException {
 		// take the configname and get the proper emailDto for the message type

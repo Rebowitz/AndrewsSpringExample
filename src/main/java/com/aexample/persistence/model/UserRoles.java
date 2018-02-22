@@ -23,28 +23,67 @@ public class UserRoles implements java.io.Serializable {
 	
 	@Id
 	@NotNull
-	private long user_Id;
+	private Long user_Id;
 	
 	@NotNull
-	private long role_Id;
+	private Long role_Id;
 
 	public UserRoles() {
 	}
 
-	public long getUserId() {
+	public Long getUser_Id() {
 		return this.user_Id;
 	}
 
-	public void setUserId(long user_Id) {
+	public void setUser_Id(Long user_Id) {
 		this.user_Id = user_Id;
 	}
 
-	public long getRoleId() {
+	public Long getRole_Id() {
 		return this.role_Id;
 	}
 
-	public void setRoleId(long role_Id) {
+	public void setRole_Id(Long role_Id) {
 		this.role_Id = role_Id;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (role_Id ^ (role_Id >>> 32));
+		result = prime * result + (int) (user_Id ^ (user_Id >>> 32));
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserRoles other = (UserRoles) obj;
+		if (role_Id != other.role_Id)
+			return false;
+		if (user_Id != other.user_Id)
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "UserRoles [user_Id=" + user_Id + ", role_Id=" + role_Id + "]";
 	}
 	
 	

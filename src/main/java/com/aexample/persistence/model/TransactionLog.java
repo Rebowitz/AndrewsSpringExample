@@ -5,11 +5,14 @@ package com.aexample.persistence.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.aexample.domain.AbstractDomainClass;
@@ -22,20 +25,22 @@ import com.aexample.domain.AbstractDomainClass;
  */
 @Entity
 @Table(name = "transactionLog")
-public class TransactionLog  extends AbstractDomainClass{
+public class TransactionLog{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
 	@NotNull
+	@Column(name = "dateTime", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	Date dateTime;
 	
 	@NotNull
-	Integer userId;
+	String userId;
 	
 	@NotNull
-	Integer accountId;
+	Long accountId;
 	
 	@NotNull
 	String activity;
@@ -76,25 +81,25 @@ public class TransactionLog  extends AbstractDomainClass{
 	/**
 	 * @return the userId
 	 */
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	/**
 	 * @return the accountId
 	 */
-	public Integer getAccountId() {
+	public Long getAccountId() {
 		return accountId;
 	}
 	/**
 	 * @param accountId the accountId to set
 	 */
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 	/**
