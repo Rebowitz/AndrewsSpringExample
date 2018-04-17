@@ -36,7 +36,8 @@ import com.aexample.test.repository.TransactionLogRepositoryTest;
 import com.aexample.test.repository.UserLoginAttemptsRepositoryTest;
 import com.aexample.test.repository.UserPasswordResetTokenRepositoryTest;
 import com.aexample.test.repository.UserRepositoryTest;
-import com.aexample.test.service.AexampleUserLoginAttemptsServiceImplTest;
+import com.aexample.test.repository.UserVerificationTokenRepositoryTest;
+import com.aexample.test.service.UserServiceImplTest;
 
 
 @RunWith(Suite.class)
@@ -64,16 +65,50 @@ import com.aexample.test.service.AexampleUserLoginAttemptsServiceImplTest;
 	UserLoginAttemptsRepositoryTest.class,
 	UserPasswordResetTokenRepositoryTest.class,
 	ActivityLogRepositoryTest.class,
-	UserRepositoryTest.class
+	UserRepositoryTest.class,
+	UserVerificationTokenRepositoryTest.class,
 	
+	//service layer tests
+	UserServiceImplTest.class
+	//ActivityLogServiceTest.class,
+	//ApplicationTaskExecutorServiceTest.class,
+	//RoleServiceTest.class,
+	//TransactionLogService.class,
+	//UserService.class,
+
+	//security service layer tests
+	//ActiveUserStoreTest.class,
+	//AuthAttemptsLoggerTest.class,
+	//CustomWebAuthenicationDetailsTest.class,
+	//CustomeWebAuthenticationDetailsSource.class,
+	//EncryptionServiceClassTest.class,
+	//SecurityUserServiceTest.class,
+	//UserLoginAttemptsServiceTest.class,
+	//LimitLoginAttemptsAuthenticationProviderTest.class,
+	//LoggedUserTest.class,
+	//SpringSecurityBeansTest.class,
+	//CustomSpringSecurityUserDetailsService.class,
+	//EncryptionServiceImplTest.class,
+	//RegistrationUserDetailsServiceTest.class,
+	//UserDetailsImplTest.class,
+	//UserDetailsServiceImplTest.class,
+	//UserLoginAttemptsServiceImplTest.class,
+	//UserSecurityServiceTest.class,
+	//UserToUserDetailsTest.class,
+	
+	
+	//controller tests
+	
+ // RegistrationControllerTest.class,
+  
 //	AexampleUserLoginAttemptsServiceImplTest.class	
 //  LoginViewBeanTest.class,
 //   RegistrationViewBeanTest.class,
 //   AexampleRegistrationServiceImplTest.class, 
-//   AexampleUserServiceImplTest.class,
+//   UserServiceImplTest.class,
 //   AexampleRegistrationDaoTest.class,
 //   LoginControllerTest.class,
-//   RegistrationControllerTest.class
+
 //   DashboardControllerTest.class
 })
 public class TestSuite {

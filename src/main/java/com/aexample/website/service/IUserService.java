@@ -17,16 +17,36 @@ import com.aexample.website.exception.UserAlreadyExistsException;
  *
  */
 public interface IUserService{	
+	
+	//User Account
 
     UserAccount registerNewUserAccount(UserDto accountDto) throws UserAlreadyExistsException;
 
-    UserAccount getUser(String verificationToken);
-
-    void saveRegisteredUser(UserAccount user);
-
     void deleteUser(UserAccount user);
     
-    String generateTokenValue();
+    UserAccount findUserByEmail(String email);    
+  
+    UserAccount getUserByIDLongPrimitive(long id);
+
+    void changeUserPassword(UserAccount user, String password);    
+
+    boolean checkIfValidOldPassword(UserAccount user, String password);    
+
+    List<String> getUsersFromSessionRegistry();
+    
+	UserAccount saveOrUpdate(UserAccount user);
+
+	UserAccount getUserByIdLongObject(Long long1);
+
+	void deleteUserByLongPrimitive(long id);
+	
+	void deleteUserByLongObject(Long id);  //autoboxing
+
+	List<?> listAllUsers();
+	    
+    
+    
+    //UserVerificationToken
 
     void createVerificationTokenForUser(UserAccount user, String token);
 
@@ -34,40 +54,42 @@ public interface IUserService{
 
     UserVerificationToken generateNewVerificationToken(String token);
 
+    String validateVerificationToken(String token);    
+    
+	UserVerificationToken getPreviousToken(String token);
+	
+	UserVerificationToken findTokenByUser(UserAccount user);
+	
+    UserAccount getUserFromToken(String verificationToken);
+	
+	void deleteUserVerificationToken(UserVerificationToken userVerficationToken);   
+    
+    
+    //PasswordResetToken
+
     void createPasswordResetTokenForUser(UserAccount user, String token, String newEncryptPassword);
 
-    UserAccount findUserByEmail(String email);
-
     UserPasswordResetToken getPasswordResetToken(String token);
-
+    
+    UserPasswordResetToken generateNewPasswordResetToken(UserAccount user, String token, String newEncryptedPassword);
+    
+    String validateResetPasswordToken(String token);
+ 
+    UserPasswordResetToken findPasswordResetTokenByUser(UserAccount user);
+    
     UserAccount getUserByPasswordResetToken(String token);
 
-    UserAccount getUserByID(long id);
+    void deletePasswordResetToken(UserPasswordResetToken passwordResetToken);
 
-    void changeUserPassword(UserAccount user, String password);
 
-    boolean checkIfValidOldPassword(UserAccount user, String password);
-
-    String validateVerificationToken(String token);
-
-    String validateResetPasswordToken(String token);
-
-    List<String> getUsersFromSessionRegistry();
+    //util    
+    
+    String generateTokenValue();
     
 	public String serviceInstantiated();
 
-	void delete(Long id);
 
-	UserAccount saveOrUpdate(UserAccount user);
 
-	UserAccount getById(Integer id);
 
-	void delete(Integer id);
-
-	List<?> listAll();
-
-	UserVerificationToken getPreviousToken(String verificationToken);
-	
-	UserVerificationToken findTokenByUser(UserAccount user);
 	
 }

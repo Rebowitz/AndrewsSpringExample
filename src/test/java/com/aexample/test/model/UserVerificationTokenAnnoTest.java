@@ -41,9 +41,9 @@ public class UserVerificationTokenAnnoTest {
 	  @Test
 	  public void fieldAnnotations() {
 	    // assert
-	    AssertAnnotations.assertField(UserVerificationToken.class, "id", Id.class, GeneratedValue.class);
+	    AssertAnnotations.assertField(UserVerificationToken.class, "id", Id.class);
 	    AssertAnnotations.assertField(UserVerificationToken.class, "expiryDate", Column.class, NotNull.class, Temporal.class);
-	    AssertAnnotations.assertField(UserVerificationToken.class, "previousToken", NotNull.class);
+	    AssertAnnotations.assertField(UserVerificationToken.class, "previousToken");
 	    AssertAnnotations.assertField(UserVerificationToken.class, "token", NotNull.class);
 	    AssertAnnotations.assertField(UserVerificationToken.class, "user", OneToOne.class, JoinColumn.class);
 	  }
@@ -76,19 +76,18 @@ public class UserVerificationTokenAnnoTest {
 	    Assert.assertEquals("userVerificationToken", t.name());
 	  }
 	  
-	  @Test
+/*	  @Test
 	  public void id() {
 	    // setup
 	    GeneratedValue a
 	    = ReflectTool.getFieldAnnotation(
-	        UserVerificationToken.class, "id", GeneratedValue.class);
+	        UserVerificationToken.class, "id");
 	    // assert
-	    Assert.assertEquals("", a.generator());
+//	    Assert.assertEquals("", a.generator());
 	    Assert.assertEquals(GenerationType.IDENTITY, a.strategy());
-  
 	    
 	  }
-	  
+*/  
 	  @Test
 	  public void expiryDate() {
 	    // setup
